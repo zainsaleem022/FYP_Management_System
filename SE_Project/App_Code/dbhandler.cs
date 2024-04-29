@@ -10,7 +10,7 @@ public class dbhandler
     private static readonly dbhandler instance = new dbhandler();
     private dbhandler()
     {
-        connectionstring = "Data Source=DESKTOP-1AGR8OG\\SQLEXPRESS;Initial Catalog=se_project;Integrated Security=True";
+        connectionstring = "Data Source=LAPTOP-RU4CV3CE\\SQLEXPRESS;Initial Catalog=fyp;Integrated Security=True";
         // Initialize the SqlConnection
         connection = new SqlConnection(connectionstring);
     }
