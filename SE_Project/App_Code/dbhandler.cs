@@ -10,7 +10,7 @@ public class dbhandler
     private static readonly dbhandler instance = new dbhandler();
     private dbhandler()
     {
-        connectionstring = "Data Source=DESKTOP-1AGR8OG\\SQLEXPRESS;Initial Catalog=se_project;Integrated Security=True";
+        connectionstring = "Data Source=IK\\SQLEXPRESS;Initial Catalog=fyp;Integrated Security=True";
         // Initialize the SqlConnection
         connection = new SqlConnection(connectionstring);
     }
@@ -207,6 +207,38 @@ public class dbhandler
                     groupId = reader.GetString(0);
                     email = reader.GetString(1);
                     studentName = reader.GetString(2);
+                }
+            }
+
+            connection.Close();
+        }
+    }
+
+    public void findFaculty(string id, ref int committee, ref int panel, ref int supervisor, ref string email, ref string facultyName)
+    {
+        //committee = 0;
+        //panel = 0;
+        //supervisor = 0;
+        //email = string.Empty;
+        //facultyName = string.Empty;
+
+        string query = "SELECT committee, panel,supervisor, email, faculty_name FROM faculty WHERE id = @id";
+
+        using (SqlCommand cmd = new SqlCommand(query, connection))
+        {
+            cmd.Parameters.AddWithValue("@id", id);
+
+            connection.Open();
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    committee = reader.GetInt32(0);
+                    panel = reader.GetInt32(1);
+                    supervisor = reader.GetInt32(2);
+                    email = reader.GetString(3);
+                    facultyName = reader.GetString(4);
                 }
             }
 
