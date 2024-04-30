@@ -75,66 +75,121 @@ public class dbhandler
     }
 
     // Public method to register student
-    public int RegisterStudent(string id, string password, string group,string name, string email)
+    public int RegisterStudents(int group, List<(string id, string password, string name, string email)> students)
     {
-        // Check if the student ID already exists
-        if (IsStudentIdExists(id))
+        int registeredCount = 0;
+
+        // Check if the number of students is 2 or 3
+        if (students.Count == 2 || students.Count == 3)
         {
-            // If the ID already exists, return -1 indicating failure
-            return -1;
+            // Check the number of students already in the group
+           
+            
+                bool areAllValidated = true;
+
+                foreach (var student in students)
+                {
+                    // Check if the student ID already exists
+                    if (IsStudentIdExists(student.id))
+                    {
+                        areAllValidated = false;
+                        break;
+                    }
+
+                    
+
+                }
+
+                // If all validations pass, register the students
+                if (areAllValidated)
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionstring))
+                    {
+                        connection.Open();
+                        SqlTransaction transaction = connection.BeginTransaction();
+
+                        
+                    try
+                        {
+                        string registerfypQuery = "Insert into fyp(id) values (@group)";
+                        using (SqlCommand cmdf = new SqlCommand(registerfypQuery, transaction.Connection, transaction))
+                        {
+                            cmdf.Parameters.AddWithValue("@group", group);
+                            int fypAffected = cmdf.ExecuteNonQuery();
+                        }
+                        foreach (var student in students)
+                            {
+                                int regVal = RegisterStudent(student.id, student.password, group, student.name, student.email, transaction);
+                                if (regVal != 1)
+                                {
+                                    // If any registration fails, rollback the transaction
+                                    transaction.Rollback();
+                                    return 0;
+                                }
+                            }
+
+                            // If all registrations succeed, commit the transaction
+                            transaction.Commit();
+                            registeredCount = students.Count;
+                        }
+                        catch (Exception ex)
+                        {
+                            // Handle the exception appropriately
+                            transaction.Rollback();
+                            // Log the exception or take appropriate action
+                        }
+                        finally
+                        {
+                            connection.Close();
+                        }
+                    }
+                }
+            
         }
 
-        // Check the number of students in the same group
-        int studentsInGroup = CountStudentsInGroup(group);
+        return registeredCount;
+    }
 
-        // If the number of students in the group is less than 3, register the student
-        if (studentsInGroup < 3)
+    // Modified RegisterStudent method to use a transaction
+    private int RegisterStudent(string id, string password, int group, string name, string email, SqlTransaction transaction)
+    {
+        // Perform the student registration
+        string registerStudentQuery = "INSERT INTO student (id, student_name, email) VALUES (@id, @name, @email)";
+        string registerUserQuery = "INSERT INTO users (id, pwd, user_role) VALUES (@id, @password, 'student')";
+        //string registerfypQuery = "Insert into fyp(id) values (@group)";
+        string registerFypQuery = "INSERT INTO fyp_group (student_id, fyp_id) VALUES (@id, @group)";
+
+        using (SqlCommand cmdUser = new SqlCommand(registerUserQuery, transaction.Connection, transaction))
+        using (SqlCommand cmdStudent = new SqlCommand(registerStudentQuery, transaction.Connection, transaction))
+        
+        using (SqlCommand cmdFyp = new SqlCommand(registerFypQuery, transaction.Connection, transaction))
         {
-            // Perform the student registration
-            string registerStudentQuery = "INSERT INTO student (id, group_id,student_name,email) VALUES (@id, @group,@name,@email)";
-            string registerUserQuery = "INSERT INTO users (id, pwd, user_role) VALUES (@id, @password, 'student')";
+            // Add parameters for student registration
+            cmdStudent.Parameters.AddWithValue("@id", id);
+            cmdStudent.Parameters.AddWithValue("@name", name);
+            cmdStudent.Parameters.AddWithValue("@email", email);
 
-            // Using statement ensures proper disposal of resources
-            using (SqlCommand cmdStudent = new SqlCommand(registerStudentQuery, connection))
-            using (SqlCommand cmdUser = new SqlCommand(registerUserQuery, connection))
-            {
-                // Add parameters for student registration
-                cmdStudent.Parameters.AddWithValue("@id", id);
-                cmdStudent.Parameters.AddWithValue("@password", password);
-                cmdStudent.Parameters.AddWithValue("@group", group);
-                cmdStudent.Parameters.AddWithValue("@name", name);
-                cmdStudent.Parameters.AddWithValue("@email", email);
-                // Add parameters for user registration
-                cmdUser.Parameters.AddWithValue("@id", id);
-                cmdUser.Parameters.AddWithValue("@password", password);
+            // Add parameters for user registration
+            cmdUser.Parameters.AddWithValue("@id", id);
+            cmdUser.Parameters.AddWithValue("@password", password);
 
-                // Open connection to the database
-                connection.Open();
+            
 
-                // Execute the registration queries
-                int studentRowsAffected = cmdStudent.ExecuteNonQuery();
-                int userRowsAffected = cmdUser.ExecuteNonQuery();
+            // Add parameters for FYP group registration
+            cmdFyp.Parameters.AddWithValue("@id", id);
+            cmdFyp.Parameters.AddWithValue("@group", group);
 
-                // Close the connection
-                connection.Close();
-
-                // Check if both registrations were successful
-                if (studentRowsAffected > 0 && userRowsAffected > 0)
-                {
-                    // Both registrations successful, return 1 indicating success
-                    return 1;
-                }
-                else
-                {
-                    // Registration failed, return 0 indicating failure
-                    return 0;
-                }
-            }
-        }
-        else
-        {
-            // If the number of students in the group is 3 or more, return 2 indicating failure
-            return 2;
+            // Execute the registration queries within the transaction
+            int studentRowsAffected = cmdStudent.ExecuteNonQuery();
+            int userRowsAffected = cmdUser.ExecuteNonQuery();
+            
+            int fypRowsAffected = cmdFyp.ExecuteNonQuery();
+            int test = 0;
+            // Check if all registrations were successful
+            
+                // Registration failed, return 0 indicating failure
+            return 1;
+            
         }
     }
 
@@ -163,9 +218,9 @@ public class dbhandler
     }
 
     // Private method to count the number of students in a group
-    private int CountStudentsInGroup(string group)
+    private int CountStudentsInGroup(int group)
     {
-        string query = "SELECT COUNT(*) FROM student WHERE group_id = @group";
+        string query = "SELECT COUNT(*) FROM fyp_group WHERE fyp_id = @group";
 
         // Using statement ensures proper disposal of resources
         using (SqlCommand cmd = new SqlCommand(query, connection))

@@ -16,29 +16,53 @@ public partial class RegisterStudent : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        string id = TextBox1.Text;
-        string password = TextBox2.Text;
-        string group = TextBox3.Text;
-        string name = TextBox4.Text;
-        string email = id + "@abc.pk";
-        // Access the singleton instance of dbhandler
-        dbhandler dbhandler = dbhandler.Instance;
+        int group;
+        if (int.TryParse(TextBox3.Text, out group))
+        {
+            dbhandler dbhandler = dbhandler.Instance;
 
-        // Call the RegisterStudent method using the singleton instance
-        int regVal = dbhandler.RegisterStudent(id, password, group,name,email);
+            List<(string id, string password, string name, string email)> students = new List<(string id, string password, string name, string email)>();
 
-        // Handle the registration result
-        if (regVal == 1)
-        {
-            Response.Write("<script>alert('Student Registered');</script>");
+            // Add Student 1
+            string id1 = TextBox1.Text;
+            string password1 = TextBox2.Text;
+            string name1 = TextBox4.Text;
+            string email1 = id1 + "@abc.pk";
+            students.Add((id1, password1, name1, email1));
+
+            // Add Student 2
+            string id2 = TextBox5.Text;
+            string password2 = TextBox6.Text;
+            string name2 = TextBox7.Text;
+            string email2 = id2 + "@abc.pk";
+            students.Add((id2, password2, name2, email2));
+
+            // Add Student 3 if the textboxes are not empty
+            if (!string.IsNullOrEmpty(TextBox8.Text) && !string.IsNullOrEmpty(TextBox9.Text) && !string.IsNullOrEmpty(TextBox10.Text))
+            {
+                string id3 = TextBox8.Text;
+                string password3 = TextBox9.Text;
+                string name3 = TextBox10.Text;
+                string email3 = id3 + "@abc.pk";
+                students.Add((id3, password3, name3, email3));
+            }
+
+            // Perform validations and registration
+            int registeredCount = dbhandler.RegisterStudents(group, students);
+
+            // Handle the registration result
+            if (registeredCount == students.Count)
+            {
+                Response.Write("<script>alert('Students Registered');</script>");
+            }
+            else
+            {
+                Response.Write("<script>alert('Registration failed');</script>");
+            }
         }
-        else if (regVal == -1)
+        else
         {
-            Response.Write("<script>alert('ID exists');</script>");
-        }
-        else if (regVal == 2)
-        {
-            Response.Write("<script>alert('3 members already in group');</script>");
+            Response.Write("<script>alert('Invalid group ID');</script>");
         }
     }
 
