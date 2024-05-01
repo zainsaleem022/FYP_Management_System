@@ -154,7 +154,7 @@ public class dbhandler
     private int RegisterStudent(string id, string password, int group, string name, string email, SqlTransaction transaction)
     {
         // Perform the student registration
-        string registerStudentQuery = "INSERT INTO student (id, student_name, email) VALUES (@id, @name, @email)";
+        string registerStudentQuery = "INSERT INTO student (student_id, student_name, email) VALUES (@id, @name, @email)";
         string registerUserQuery = "INSERT INTO users (id, pwd, user_role) VALUES (@id, @password, 'student')";
         //string registerfypQuery = "Insert into fyp(id) values (@group)";
         string registerFypQuery = "INSERT INTO fyp_group (student_id, fyp_id) VALUES (@id, @group)";
@@ -196,7 +196,7 @@ public class dbhandler
     // Private method to check if the student ID already exists
     private bool IsStudentIdExists(string id)
     {
-        string query = "SELECT COUNT(*) FROM student WHERE id = @id";
+        string query = "SELECT COUNT(*) FROM student WHERE student_id = @id";
 
         // Using statement ensures proper disposal of resources
         using (SqlCommand cmd = new SqlCommand(query, connection))
@@ -247,7 +247,7 @@ public class dbhandler
         email = string.Empty;
         studentName = string.Empty;
 
-        string query = "SELECT group_id, email, student_name FROM student WHERE id = @id";
+        string query = "SELECT group_id, email, student_name FROM student WHERE student_id = @id";
 
         using (SqlCommand cmd = new SqlCommand(query, connection))
         {
