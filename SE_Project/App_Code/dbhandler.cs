@@ -391,6 +391,11 @@ public class dbhandler
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable table = new DataTable();
             adapter.Fill(table);
+            return table;
+        }
+    }
+
+
     public int get_student_fyp_group_id(string studentId)
     {
         int groupId = 0;
@@ -420,10 +425,6 @@ public class dbhandler
         }
 
         return groupId;
-    }
-
-            return table;
-        }
     }
 
     public int RegisterFaculty(string id, string password, string name, string email)
