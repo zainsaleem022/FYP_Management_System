@@ -10,7 +10,7 @@ public class dbhandler
     private static readonly dbhandler instance = new dbhandler();
     private dbhandler()
     {
-        connectionstring = "Data Source=IK\\SQLEXPRESS;Initial Catalog=fyp;Integrated Security=True";
+        connectionstring = "Data Source=DESKTOP-1AGR8OG\\SQLEXPRESS;Initial Catalog=se_project;Integrated Security=True";
         // Initialize the SqlConnection
         connection = new SqlConnection(connectionstring);
     }
@@ -23,7 +23,7 @@ public class dbhandler
 
     // Private fields
     private string connectionstring;
-    private SqlConnection connection;
+    public SqlConnection connection;
 
     // Public method to perform login
     public int login(string id, string password,ref string userrole)
@@ -299,13 +299,12 @@ public class dbhandler
         }
     }
 
-    public void findStudent(string id, ref string groupId, ref string email, ref string studentName)
+    public void findStudent(string id, ref string email, ref string studentName)
     {
-        groupId = string.Empty;
         email = string.Empty;
         studentName = string.Empty;
 
-        string query = "SELECT group_id, email, student_name FROM student WHERE student_id = @id";
+        string query = "SELECT email, student_name FROM student WHERE student_id = @id";
 
         using (SqlCommand cmd = new SqlCommand(query, connection))
         {
@@ -317,9 +316,8 @@ public class dbhandler
             {
                 if (reader.Read())
                 {
-                    groupId = reader.GetString(0);
-                    email = reader.GetString(1);
-                    studentName = reader.GetString(2);
+                    email = reader.GetString(0);
+                    studentName = reader.GetString(1);
                 }
             }
 
@@ -359,5 +357,35 @@ public class dbhandler
         }
     }
 
+    public int get_student_fyp_group_id(string studentId)
+    {
+        int groupId = 0;
+
+        // Define your SQL query
+        string query = "SELECT fyp_id FROM fyp_group WHERE student_id = @studentId";
+
+        // Use SqlConnection and SqlCommand to execute the query
+        using (SqlConnection connection = new SqlConnection(connectionstring))
+        {
+            connection.Open();
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                // Add parameter for student_id
+                command.Parameters.AddWithValue("@studentId", studentId);
+
+                // Execute the query and get the result
+                object result = command.ExecuteScalar();
+
+                // Check if the result is not null and convert it to integer
+                if (result != null && result != DBNull.Value)
+                {
+                    groupId = Convert.ToInt32(result);
+                }
+            }
+        }
+
+        return groupId;
+    }
 
 }
