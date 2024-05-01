@@ -30,7 +30,9 @@
             </asp:DropDownList>
         </p>
         <p>
-            &nbsp;</p>
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Register" />
+            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" style="margin-left: 83px" Text="Login" Width="57px" />
+        </p>
         <p>
             &nbsp;</p>
         <p>
