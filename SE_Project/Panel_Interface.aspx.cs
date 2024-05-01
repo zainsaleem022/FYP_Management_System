@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,12 +10,21 @@ public partial class Panel_Interface : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Faculty_class faculty = (Faculty_class)Session["faculty_user"];
+        Response.Write("<script>alert('Name: " + faculty.Name + "\\n" +
+                              "Email: " + faculty.Email + "\\n" +
+                              "Supervisor Role: " + faculty.supervisor_role.ToString() + "\\n" +
+                              "Panel Role: " + faculty.panel_role.ToString() + "\\n" +
+                              "Committee Role: " + faculty.committee_role.ToString() + "');</script>");
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-
+        Faculty_class faculty = (Faculty_class)Session["faculty_user"];
+        Panel_Member panel = new Panel_Member(faculty);
+        DataTable table = panel.DisplayPanelMembers();
+        gridView1.DataSource = table;
+        gridView1.DataBind();
     }
 
     protected void Button2_Click(object sender, EventArgs e)
@@ -28,6 +38,15 @@ public partial class Panel_Interface : System.Web.UI.Page
     }
 
     protected void Button4_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void gridView1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void gridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
 
     }

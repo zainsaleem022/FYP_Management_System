@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -358,5 +359,42 @@ public class dbhandler
         }
     }
 
+    public DataTable DisplayPanel(int id)
+    {
+        string query = @"SELECT
+                        p.id AS panel_id,
+                        f.faculty_name,
+                        f.email,
+                        f.id
+                    FROM
+                        faculty f
+                    JOIN
+                        panel p ON p.panel_member_1_id = f.id
+                            OR p.panel_member_2_id = f.id
+                            OR p.panel_member_3_id = f.id
+                            OR p.panel_member_4_id = f.id
+                            OR p.panel_member_5_id = f.id
+                    WHERE
+                        p.id = @id
+                    GROUP BY
+                        f.faculty_name,
+                        f.email,
+                        f.id,
+                        p.id;";
+
+        using (SqlConnection conn = new SqlConnection(connectionstring))
+        {
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            conn.Open();
+
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
+    }
 
 }
