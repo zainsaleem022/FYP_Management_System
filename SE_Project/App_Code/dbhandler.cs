@@ -360,4 +360,51 @@ public class dbhandler
     }
 
 
+    public int RegisterFaculty(string id, string password, string name, string email)
+    {
+        // Perform the student registration
+        string registerFacultyQuery = "INSERT INTO faculty (id, supervisor,panel,committee,faculty_name, email) VALUES (@id, 0,0,0, @name, @email)";
+        string registerUserQuery = "INSERT INTO users (id, pwd, user_role) VALUES (@id, @password, 'faculty')";
+        connection.Open();
+        SqlTransaction transaction = connection.BeginTransaction();
+        using (SqlCommand cmdUser = new SqlCommand(registerUserQuery, transaction.Connection, transaction))
+        using (SqlCommand cmdFaculty = new SqlCommand(registerFacultyQuery, transaction.Connection, transaction))
+
+        {
+            
+            
+            // Add parameters for student registration
+            cmdFaculty.Parameters.AddWithValue("@id", id);
+            cmdFaculty.Parameters.AddWithValue("@name", name);
+            cmdFaculty.Parameters.AddWithValue("@email", email);
+
+            // Add parameters for user registration
+            cmdUser.Parameters.AddWithValue("@id", id);
+            cmdUser.Parameters.AddWithValue("@password", password);
+
+
+
+
+            // Execute the registration queries within the transaction
+            try
+            {
+                int userRowsAffected = cmdUser.ExecuteNonQuery();
+                int FacultyRowsAffected = cmdFaculty.ExecuteNonQuery();
+                transaction.Commit();
+                connection.Close();
+
+                int test = 0;
+                // Check if all registrations were successful
+
+                // Registration failed, return 0 indicating failure
+                return 1;
+            }
+            catch (Exception ex) { 
+                transaction.Rollback();
+                return 0; }
+
+        }
+    }
+
+
 }
