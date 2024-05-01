@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -26,7 +27,7 @@ public class dbhandler
     private SqlConnection connection;
 
     // Public method to perform login
-    public int login(string id, string password,ref string userrole)
+    public int login(string id, string password, ref string userrole)
     {
         int _role = -1;
 
@@ -140,34 +141,34 @@ public class dbhandler
         if (students.Count == 2 || students.Count == 3)
         {
             // Check the number of students already in the group
-           
-            
-                bool areAllValidated = true;
 
-                foreach (var student in students)
+
+            bool areAllValidated = true;
+
+            foreach (var student in students)
+            {
+                // Check if the student ID already exists
+                if (IsStudentIdExists(student.id))
                 {
-                    // Check if the student ID already exists
-                    if (IsStudentIdExists(student.id))
-                    {
-                        areAllValidated = false;
-                        break;
-                    }
-
-                    
-
+                    areAllValidated = false;
+                    break;
                 }
 
-                // If all validations pass, register the students
-                if (areAllValidated)
-                {
-                    using (SqlConnection connection = new SqlConnection(connectionstring))
-                    {
-                        connection.Open();
-                        SqlTransaction transaction = connection.BeginTransaction();
 
-                        
+
+            }
+
+            // If all validations pass, register the students
+            if (areAllValidated)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionstring))
+                {
+                    connection.Open();
+                    SqlTransaction transaction = connection.BeginTransaction();
+
+
                     try
-                        {
+                    {
                         string registerfypQuery = "Insert into fyp(id) values (@group)";
                         using (SqlCommand cmdf = new SqlCommand(registerfypQuery, transaction.Connection, transaction))
                         {
@@ -175,33 +176,33 @@ public class dbhandler
                             int fypAffected = cmdf.ExecuteNonQuery();
                         }
                         foreach (var student in students)
+                        {
+                            int regVal = RegisterStudent(student.id, student.password, group, student.name, student.email, transaction);
+                            if (regVal != 1)
                             {
-                                int regVal = RegisterStudent(student.id, student.password, group, student.name, student.email, transaction);
-                                if (regVal != 1)
-                                {
-                                    // If any registration fails, rollback the transaction
-                                    transaction.Rollback();
-                                    return 0;
-                                }
+                                // If any registration fails, rollback the transaction
+                                transaction.Rollback();
+                                return 0;
                             }
+                        }
 
-                            // If all registrations succeed, commit the transaction
-                            transaction.Commit();
-                            registeredCount = students.Count;
-                        }
-                        catch (Exception ex)
-                        {
-                            // Handle the exception appropriately
-                            transaction.Rollback();
-                            // Log the exception or take appropriate action
-                        }
-                        finally
-                        {
-                            connection.Close();
-                        }
+                        // If all registrations succeed, commit the transaction
+                        transaction.Commit();
+                        registeredCount = students.Count;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle the exception appropriately
+                        transaction.Rollback();
+                        // Log the exception or take appropriate action
+                    }
+                    finally
+                    {
+                        connection.Close();
                     }
                 }
-            
+            }
+
         }
 
         return registeredCount;
@@ -218,7 +219,7 @@ public class dbhandler
 
         using (SqlCommand cmdUser = new SqlCommand(registerUserQuery, transaction.Connection, transaction))
         using (SqlCommand cmdStudent = new SqlCommand(registerStudentQuery, transaction.Connection, transaction))
-        
+
         using (SqlCommand cmdFyp = new SqlCommand(registerFypQuery, transaction.Connection, transaction))
         {
             // Add parameters for student registration
@@ -230,7 +231,7 @@ public class dbhandler
             cmdUser.Parameters.AddWithValue("@id", id);
             cmdUser.Parameters.AddWithValue("@password", password);
 
-            
+
 
             // Add parameters for FYP group registration
             cmdFyp.Parameters.AddWithValue("@id", id);
@@ -240,14 +241,14 @@ public class dbhandler
             int userRowsAffected = cmdUser.ExecuteNonQuery();
             int studentRowsAffected = cmdStudent.ExecuteNonQuery();
 
-            
+
             int fypRowsAffected = cmdFyp.ExecuteNonQuery();
             int test = 0;
             // Check if all registrations were successful
-            
-                // Registration failed, return 0 indicating failure
+
+            // Registration failed, return 0 indicating failure
             return 1;
-            
+
         }
     }
 
@@ -359,6 +360,43 @@ public class dbhandler
         }
     }
 
+    public DataTable DisplayPanel(int id)
+    {
+        string query = @"SELECT
+                        p.id AS panel_id,
+                        f.faculty_name,
+                        f.email,
+                        f.id
+                    FROM
+                        faculty f
+                    JOIN
+                        panel p ON p.panel_member_1_id = f.id
+                            OR p.panel_member_2_id = f.id
+                            OR p.panel_member_3_id = f.id
+                            OR p.panel_member_4_id = f.id
+                            OR p.panel_member_5_id = f.id
+                    WHERE
+                        p.id = @id
+                    GROUP BY
+                        f.faculty_name,
+                        f.email,
+                        f.id,
+                        p.id;";
+
+        using (SqlConnection conn = new SqlConnection(connectionstring))
+        {
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            conn.Open();
+
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
+    }
 
     public int RegisterFaculty(string id, string password, string name, string email)
     {
@@ -371,8 +409,8 @@ public class dbhandler
         using (SqlCommand cmdFaculty = new SqlCommand(registerFacultyQuery, transaction.Connection, transaction))
 
         {
-            
-            
+
+
             // Add parameters for student registration
             cmdFaculty.Parameters.AddWithValue("@id", id);
             cmdFaculty.Parameters.AddWithValue("@name", name);
@@ -399,12 +437,12 @@ public class dbhandler
                 // Registration failed, return 0 indicating failure
                 return 1;
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 transaction.Rollback();
-                return 0; }
+                return 0;
+            }
 
         }
     }
-
-
 }
