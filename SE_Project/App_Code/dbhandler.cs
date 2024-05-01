@@ -10,7 +10,7 @@ public class dbhandler
     private static readonly dbhandler instance = new dbhandler();
     private dbhandler()
     {
-        connectionstring = "Data Source=IK\\SQLEXPRESS;Initial Catalog=fyp;Integrated Security=True";
+        connectionstring = "Data Source=LAPTOP-RU4CV3CE\\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True";
         // Initialize the SqlConnection
         connection = new SqlConnection(connectionstring);
     }
@@ -72,6 +72,63 @@ public class dbhandler
         connection.Close();
 
         return _role;
+    }
+
+    public int register(string id, string pass, string userrole)
+    {
+        int _role = -1;
+
+        string query = "SELECT * FROM users WHERE id = @id";
+
+        using (SqlCommand cmd = new SqlCommand(query, connection))
+        {
+            // Add parameters to the command
+            cmd.Parameters.AddWithValue("@id", id);
+
+            // Open connection to the database
+            connection.Open();
+
+            // Execute the query
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                // Check if any rows are returned (i.e., user exists)
+                if (reader.HasRows)
+                {
+                    return 0;
+                }
+                else
+                {
+                    string query1 = "INSERT INTO Users (id, pwd,user_role) VALUES (@id, @pass, @userrole);";
+                    using (SqlCommand cmd1 = new SqlCommand(query1, connection))
+                    {
+                        // Add parameters to the command
+                        cmd1.Parameters.AddWithValue("@id", id);
+                        cmd1.Parameters.AddWithValue("@pass", pass);
+                        cmd1.Parameters.AddWithValue("@userrole", userrole);
+
+                        // Execute the insert query
+                        int rowsAffected = cmd1.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            // User registered successfully
+                            return 1;
+                        }
+                        else
+                        {
+                            // Failed to register user
+                            return -1;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Close the connection
+        connection.Close();
+
+        return _role;
+
     }
 
     // Public method to register student

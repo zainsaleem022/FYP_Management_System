@@ -51,7 +51,7 @@ public partial class Faculty : System.Web.UI.Page
 
         if (faculty.supervisor_role == 1)
         {
-            Response.Redirect("Supervisor.aspx");
+            Response.Redirect("Supervisor_Interface.aspx");
         }
         else
         {
@@ -72,7 +72,7 @@ public partial class Faculty : System.Web.UI.Page
 
         if (faculty.panel_role == 1)
         {
-            Response.Redirect("Panel.aspx");
+            Response.Redirect("Panel_Interface.aspx");
         }
         else
         {
