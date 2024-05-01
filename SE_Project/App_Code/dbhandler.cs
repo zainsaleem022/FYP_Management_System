@@ -10,7 +10,7 @@ public class dbhandler
     private static readonly dbhandler instance = new dbhandler();
     private dbhandler()
     {
-        connectionstring = "Data Source=LAPTOP-RU4CV3CE\\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True";
+        connectionstring = "Data Source=IK\\SQLEXPRESS;Initial Catalog=fyp;Integrated Security=True";
         // Initialize the SqlConnection
         connection = new SqlConnection(connectionstring);
     }
@@ -237,8 +237,9 @@ public class dbhandler
             cmdFyp.Parameters.AddWithValue("@group", group);
 
             // Execute the registration queries within the transaction
-            int studentRowsAffected = cmdStudent.ExecuteNonQuery();
             int userRowsAffected = cmdUser.ExecuteNonQuery();
+            int studentRowsAffected = cmdStudent.ExecuteNonQuery();
+
             
             int fypRowsAffected = cmdFyp.ExecuteNonQuery();
             int test = 0;
