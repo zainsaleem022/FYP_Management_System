@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -26,7 +27,7 @@ public class dbhandler
     public SqlConnection connection;
 
     // Public method to perform login
-    public int login(string id, string password,ref string userrole)
+    public int login(string id, string password, ref string userrole)
     {
         int _role = -1;
 
@@ -357,6 +358,39 @@ public class dbhandler
         }
     }
 
+    public DataTable DisplayPanel(int id)
+    {
+        string query = @"SELECT
+                        p.id AS panel_id,
+                        f.faculty_name,
+                        f.email,
+                        f.id
+                    FROM
+                        faculty f
+                    JOIN
+                        panel p ON p.panel_member_1_id = f.id
+                            OR p.panel_member_2_id = f.id
+                            OR p.panel_member_3_id = f.id
+                            OR p.panel_member_4_id = f.id
+                            OR p.panel_member_5_id = f.id
+                    WHERE
+                        p.id = @id
+                    GROUP BY
+                        f.faculty_name,
+                        f.email,
+                        f.id,
+                        p.id;";
+
+        using (SqlConnection conn = new SqlConnection(connectionstring))
+        {
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            conn.Open();
+
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
     public int get_student_fyp_group_id(string studentId)
     {
         int groupId = 0;
@@ -388,4 +422,55 @@ public class dbhandler
         return groupId;
     }
 
+            return table;
+        }
+    }
+
+    public int RegisterFaculty(string id, string password, string name, string email)
+    {
+        // Perform the student registration
+        string registerFacultyQuery = "INSERT INTO faculty (id, supervisor,panel,committee,faculty_name, email) VALUES (@id, 0,0,0, @name, @email)";
+        string registerUserQuery = "INSERT INTO users (id, pwd, user_role) VALUES (@id, @password, 'faculty')";
+        connection.Open();
+        SqlTransaction transaction = connection.BeginTransaction();
+        using (SqlCommand cmdUser = new SqlCommand(registerUserQuery, transaction.Connection, transaction))
+        using (SqlCommand cmdFaculty = new SqlCommand(registerFacultyQuery, transaction.Connection, transaction))
+
+        {
+
+
+            // Add parameters for student registration
+            cmdFaculty.Parameters.AddWithValue("@id", id);
+            cmdFaculty.Parameters.AddWithValue("@name", name);
+            cmdFaculty.Parameters.AddWithValue("@email", email);
+
+            // Add parameters for user registration
+            cmdUser.Parameters.AddWithValue("@id", id);
+            cmdUser.Parameters.AddWithValue("@password", password);
+
+
+
+
+            // Execute the registration queries within the transaction
+            try
+            {
+                int userRowsAffected = cmdUser.ExecuteNonQuery();
+                int FacultyRowsAffected = cmdFaculty.ExecuteNonQuery();
+                transaction.Commit();
+                connection.Close();
+
+                int test = 0;
+                // Check if all registrations were successful
+
+                // Registration failed, return 0 indicating failure
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                return 0;
+            }
+
+        }
+    }
 }

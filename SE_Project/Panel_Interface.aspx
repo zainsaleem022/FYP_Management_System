@@ -22,6 +22,43 @@
         <br />
         <br />
         <br />
+
+
+
+                    <div class="content">
+
+            <div>
+                Panel Information<br />
+                <br />
+                <br />
+            </div>
+            <asp:GridView ID="gridView1" runat="server" AutoGenerateColumns="False" 
+                    OnSelectedIndexChanged="gridView1_SelectedIndexChanged"
+                    DataKeyNames="panel_id" OnRowCommand="gridView1_RowCommand" CellPadding="4" Height="258px" Width="1119px" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" style="margin-bottom: 0px">
+                    <Columns>
+                        <asp:BoundField DataField="panel_id" HeaderText="Panel ID" />
+                        <asp:BoundField DataField="faculty_name" HeaderText="Name" />
+                        <asp:BoundField DataField="email" HeaderText="Email" />
+                        <asp:BoundField DataField="id" HeaderText="Faculty ID" />
+                
+                    
+                    
+                    </Columns>
+                    <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
+                    <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
+                    <PagerStyle BackColor="#99CCCC" ForeColor="#003399" HorizontalAlign="Left" />
+                    <RowStyle BackColor="White" ForeColor="#003399" />
+                    <SelectedRowStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
+                    <SortedAscendingCellStyle BackColor="#EDF6F6" />
+                    <SortedAscendingHeaderStyle BackColor="#0D4AC4" />
+                    <SortedDescendingCellStyle BackColor="#D6DFDF" />
+                    <SortedDescendingHeaderStyle BackColor="#002876" />
+                </asp:GridView>
+
+        </div>
+
     </form>
+
+
 </body>
 </html>
