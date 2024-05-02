@@ -9,7 +9,10 @@ public partial class Supervisor_Interface : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Faculty_class committee = (Faculty_class)Session["faculty_user"];
+        Label2.Text = committee.Name;
+        Label4.Text = committee.Email;
+        Label3.Text = committee.getId();
     }
 
 
