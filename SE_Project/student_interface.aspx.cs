@@ -27,4 +27,14 @@ public partial class student_interface : System.Web.UI.Page
     {
         Response.Redirect("get_fyp_details_from_student.aspx");
     }
+
+    protected void Unnamed2_Click1(object sender, EventArgs e)
+    {
+        Response.Redirect("student_view_panel.aspx");
+    }
+
+    protected void Unnamed6_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Login.aspx");
+    }
 }

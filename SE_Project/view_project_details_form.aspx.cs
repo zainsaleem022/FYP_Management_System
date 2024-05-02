@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Text;
 
 public partial class view_project_details_form : System.Web.UI.Page
 {
@@ -23,12 +24,17 @@ public partial class view_project_details_form : System.Web.UI.Page
             // Retrieve project information from the database based on the FYP group ID
             dbhandler dbHandler = dbhandler.Instance;
 
-            // Query to fetch project information
-            string query = "SELECT * FROM fyp WHERE id = @id";
+            // Query to fetch project information along with group members' names
+            string query = @"
+            SELECT fyp.*, Student.student_name AS group_member_name 
+            FROM fyp 
+            INNER JOIN fyp_group ON fyp.id = fyp_group.fyp_id 
+            INNER JOIN Student ON fyp_group.student_id = Student.student_id 
+            WHERE fyp.id = @id";
 
             using (SqlCommand command = new SqlCommand(query, dbHandler.connection))
             {
-                // Add parameters to the command
+                // Add parameter for FYP group ID
                 command.Parameters.AddWithValue("@id", studentGroupId);
 
                 try
@@ -43,43 +49,89 @@ public partial class view_project_details_form : System.Web.UI.Page
                     SqlDataReader reader = command.ExecuteReader();
 
                     // Check if any data is retrieved
-                    if (reader.Read())
+                    if (reader.HasRows)
                     {
-                        // Display project information in the corresponding labels
-                        title_from_db_label.Text = reader["fyp_title"].ToString();
-                        description_from_db_label.Text = reader["fyp_description"].ToString();
-                        details_from_db_label.Text = reader["details"].ToString();
+                        // Loop through the results
+                        while (reader.Read())
+                        {
+                            // Display project information in the corresponding labels
+                            title_from_db_label.Text = reader["fyp_title"].ToString();
+                            description_from_db_label.Text = reader["fyp_description"].ToString();
+                            details_from_db_label.Text = reader["details"].ToString();
+
+                            // Append group members' names to the label
+                            group_members_from_db_label.Text += reader["group_member_name"].ToString() + ", ";
+                        }
+
+                        // Trim the trailing comma and space
+                        group_members_from_db_label.Text = group_members_from_db_label.Text.TrimEnd(',', ' ');
+                        reader.Close();
+                        // Check if a supervisor is assigned to this FYP
+                        string supervisorQuery = "SELECT supervisor_id FROM fyp_supervisor WHERE fyp_id = @id";
+                        using (SqlCommand supervisorCommand = new SqlCommand(supervisorQuery, dbHandler.connection))
+                        {
+                            supervisorCommand.Parameters.AddWithValue("@id", studentGroupId);
+                            object supervisorId = supervisorCommand.ExecuteScalar();
+
+                            if (supervisorId != null)
+                            {
+                                // Supervisor is assigned
+                                string supervisorInfoQuery = "SELECT faculty_name, email FROM faculty WHERE id = @supervisorId";
+                                using (SqlCommand supervisorInfoCommand = new SqlCommand(supervisorInfoQuery, dbHandler.connection))
+                                {
+                                    supervisorInfoCommand.Parameters.AddWithValue("@supervisorId", supervisorId.ToString());
+                                    SqlDataReader supervisorInfoReader = supervisorInfoCommand.ExecuteReader();
+
+                                    if (supervisorInfoReader.Read())
+                                    {
+                                        // Supervisor name and email
+                                        string supervisorName = supervisorInfoReader["faculty_name"].ToString();
+                                        string supervisorEmail = supervisorInfoReader["email"].ToString();
+
+                                        // Display supervisor information
+                                        supervisor_name_from_db_label.Text = $"Name: {supervisorName}";
+                                        supervisor_email_from_db_label.Text = $"Email: {supervisorEmail}";
+                                    }
+                                    else
+                                    {
+                                        supervisor_name_from_db_label.Text = "Supervisor information not available";
+                                    }
+
+                                    supervisorInfoReader.Close();
+                                }
+                            }
+                            else
+                            {
+                                // No supervisor assigned
+                                supervisor_name_from_db_label.Text = "Not Assigned";
+                            }
+                        }
                     }
                     else
                     {
-                        // No project information found for the FYP group ID
-                        // You can display a message or handle it as per your requirement
                         Response.Write("<script>alert('No FYP information found');</script>");
                     }
 
-                    // Close the data reader
                     reader.Close();
                 }
                 catch (Exception ex)
                 {
-                    // Handle the exception
-                    // You can display an error message or log the exception
-                    Response.Write("<script>alert('No FYP information found');</script>");
+                    Response.Write("<script>alert('Error fetching FYP information');</script>");
                 }
                 finally
                 {
-                    // Close the connection after use
                     dbHandler.connection.Close();
                 }
             }
         }
         else
         {
-            // Student session variable not found
-            // You can redirect the user or display an error message
             Response.Write("<script>alert('Student user not found');</script>");
         }
     }
+
+
+
 
 
     protected void Unnamed1_Click(object sender, EventArgs e)

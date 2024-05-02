@@ -22,7 +22,10 @@
         <div class="wlp-whitespace-only-element-expansion">
             <asp:Label runat="server" Text="Supervisor" ID="supervisor_static_label"></asp:Label>&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">
-            <asp:Label runat="server" Text="" ID="supervisor_from_db_label"></asp:Label>&nbsp;</div>
+            <asp:Label runat="server" Text="" ID="supervisor_name_from_db_label"></asp:Label>&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">
+            <asp:Label runat="server" Text="" ID="supervisor_email_from_db_label"></asp:Label>&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;
             <asp:Label runat="server" Text="Title" ID="title_static_label"></asp:Label></div>
