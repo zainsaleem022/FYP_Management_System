@@ -1,0 +1,187 @@
+﻿﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-section,
+.center-section {
+    flex-basis: 33.33%;
+    text-align: center;
+}
+
+.right-section {
+    flex: 1; /* Expand to take available space */
+    display: flex;
+    justify-content: center;
+}
+
+.back-button {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: #333;
+    border-radius: 3px;
+}
+
+.header-container {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+.main-container {
+    padding-top: 70px; /* Add padding to create space below the header */
+}
+
+.container {
+    display: flex;
+}
+
+
+.sidebar {
+    width: 200px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    height: 100vh; /* Set the height to 100% of the viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribute remaining space evenly */
+}
+
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .sidebar ul li {
+            margin-bottom: 40px;
+        }
+
+            .sidebar ul li a {
+                text-decoration: none;
+                display: block;
+            }
+
+            .sidebar ul li button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px;
+                border: none;
+                background-color: #daf6ff;
+                cursor: pointer;
+            }
+
+                .sidebar ul li button:hover {
+                    background-color: #457fb0;
+                }
+
+                .sidebar ul li button img {
+                    margin-right: 10px;
+                }
+
+                .sidebar ul li button span {
+                    font-size: 16px;
+                    transition: color 0.3s;
+                }
+
+                .sidebar ul li button:hover span {
+                    font-weight: bold;
+                    color: goldenrod;
+                }
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+.section {
+    margin-bottom: 41px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.box {
+    background-color: #b6e6f9;
+    border-radius: 5px;
+    padding: 70px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    border-collapse: collapse;
+}
+
+    table tr {
+        margin-bottom: 10px;
+    }
+
+    table td, table th {
+        padding: 10px;
+    }
+
+
+
+/* GPA */
+.bar-graph {
+    position: relative;
+    width: auto;
+    height: 200px;
+    background-color: #007bff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.bar {
+    position: relative;
+    height: 100%;
+    background-color: #007bff;
+    transition: width 0.3s ease;
+}
+
+    .bar:hover {
+        opacity: 0.8;
+        cursor: pointer;
+    }
+
+    .bar::before {
+        content: attr(title);
+        display: block;
+        text-align: center;
+        font-size: 14px;
+        line-height: 30px;
+        color: #fff;
+    }
+
+.vertical-text {
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    transform-origin: center center;
+    color: #fff;
+    font-size: 14px;
+}

@@ -10,6 +10,11 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        Faculty_class committee = (Faculty_class)Session["faculty_user"];
+        lblEmail.Text = committee.Email;
+        lblName.Text = committee.Name;
+        lblUsername.Text = committee.getId();
+
     }
 
    

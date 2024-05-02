@@ -4,35 +4,102 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+         <title>FYP Committee Profile - Home</title>
+    <link rel="stylesheet" href="mainpage_styles.css"/>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:Label ID="Label1" runat="server" Text="Supervisor Interface"></asp:Label>
+    <div class="header-container">
+        <header class="header">
+            <div class="left-section"></div>
+            <div class="center-section">
+                <h2>Supervisor Profile</h2>
+            </div>
+            <div class="right-section">
+                <a href="Login.aspx" class="back-button">Log Out</a
+            </div>
+        </header>
+    </div>
+
+    <div class="container main-container">
+        <div class="sidebar">
+            <ul>
+                            <li>
+                <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/">
+                    <button>
+                        <img src="images/home_icon.png" alt="Home" />
+                        <span>FYPs Supervising</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+            <li>
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/">
+                    <button>
+                        <img src="images/home_icon.png" alt="Home" />
+                        <span>Provide Review</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+            <li>
+                <%-- Dummy Hyperlinks --%>
+                <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>View Deadlines</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+                 <li>
+                <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>Check Supervision Requests</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+                 <li>
+                <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/supervisor_add_fyp_to_supervision.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>Add FPY to Supervision</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+            </ul>
         </div>
-        <p>
-            &nbsp;</p>
-        <p>
-            <asp:Button ID="Button1" runat="server" style="margin-left: 33px" Text="FYPs Supervising" Width="122px" />
-        </p>
-        <p>
-            &nbsp;
-        <asp:Button runat="server" Text="Provide Review"></asp:Button></p>
-        <p class="wlp-whitespace-only-element-expansion"><p class="wlp-whitespace-only-element-expansion">&nbsp;
-            <asp:Button ID="Button2" runat="server" style="margin-left: 60px" Text="View Deadlines" Width="104px" /></p>
-        <p class="wlp-whitespace-only-element-expansion">&nbsp;<asp:Button runat="server" Text="Check Supervision Requests"></asp:Button></p>
-        <p class="wlp-whitespace-only-element-expansion">&nbsp;<asp:Button runat="server" Text="Add FYP to Supervision" OnClick="Unnamed3_Click"></asp:Button></p>
-        <p class="wlp-whitespace-only-element-expansion">&nbsp;</p>
-            <asp:Button runat="server" Text="Back" OnClick="Unnamed4_Click"></asp:Button>
-        <p class="wlp-whitespace-only-element-expansion">&nbsp;</p>
-        <p class="wlp-whitespace-only-element-expansion">&nbsp;</p>
-        <p class="wlp-whitespace-only-element-expansion">&nbsp;</p>
-        <p class="wlp-whitespace-only-element-expansion">&nbsp;</p>
-        <p class="wlp-whitespace-only-element-expansion">&nbsp;</p>
-        <p class="wlp-whitespace-only-element-expansion">&nbsp;</p>
-        <p class="wlp-whitespace-only-element-expansion">&nbsp;</p>
-        <p class="wlp-whitespace-only-element-expansion">&nbsp;</p>
-    </form>
+        <div class="content">
+            <form id="form2" runat="server">
+                <div class="section">
+                    <h3>Informationn</h3>
+                    <div class="box">
+                        <table>
+                            <tr>
+                                <th>Name:</th>
+                                <td><asp:Label runat="server" ID="Label2"></asp:Label></td>
+                            </tr>
+                            <tr>
+                                <th>Username:</th>
+                                <td><asp:Label runat="server" ID="Label3"></asp:Label></td>
+                            </tr>
+                            <tr>
+                                <th>Email:</th>
+                                <td><asp:Label runat="server" ID="Label4"></asp:Label></td>
+                            </tr>
+                            <tr>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
 </body>
 </html>
+
+
+
+
+
+
+

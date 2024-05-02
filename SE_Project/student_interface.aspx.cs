@@ -16,6 +16,10 @@ public partial class student_interface : System.Web.UI.Page
 
         // Store the Student object in the session
         Session["Student"] = student;
+
+        Label3.Text = student.Email;
+        Label1.Text = student.StudentName;
+        Label2.Text = student.getId();
     }
 
     protected void Unnamed2_Click(object sender, EventArgs e)

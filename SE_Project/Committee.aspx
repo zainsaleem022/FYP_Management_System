@@ -4,14 +4,72 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+        <title>FYP Committee Profile - Home</title>
+    <link rel="stylesheet" href="mainpage_styles.css"/>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click1" Text="Register" />
-        <p>
-            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Register Student" />
-        </p>
-    </form>
+    <div class="header-container">
+        <header class="header">
+            <div class="left-section"></div>
+            <div class="center-section">
+                <h2>FYP Committee Profile</h2>
+            </div>
+            <div class="right-section">
+                <a href="Login.aspx" class="back-button">Log Out</a
+            </div>
+        </header>
+    </div>
+
+    <div class="container main-container">
+        <div class="sidebar">
+            <ul>
+            <li>
+                <asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl="~/Register.aspx">
+                    <button>
+                        <img src="images/home_icon.png" alt="Home" />
+                        <span>Register</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+            <li>
+                <%-- Dummy Hyperlinks --%>
+                <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/RegisterStudent.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>Register Student</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+            </ul>
+        </div>
+        <div class="content">
+            <form id="form2" runat="server">
+                <div class="section">
+                    <h3>Informationn</h3>
+                    <div class="box">
+                        <table>
+                            <tr>
+                                <th>Name:</th>
+                                <td><asp:Label runat="server" ID="lblName"></asp:Label></td>
+                            </tr>
+                            <tr>
+                                <th>Username:</th>
+                                <td><asp:Label runat="server" ID="lblUsername"></asp:Label></td>
+                            </tr>
+                            <tr>
+                                <th>Email:</th>
+                                <td><asp:Label runat="server" ID="lblEmail"></asp:Label></td>
+                            </tr>
+                            <tr>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
 </body>
 </html>
+
