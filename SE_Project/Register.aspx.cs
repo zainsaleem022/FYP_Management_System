@@ -20,8 +20,6 @@ public partial class _Default : System.Web.UI.Page
         User myUser = new User(id,password,role);
 
 
-
-
     }
 
     protected void Button2_Click(object sender, EventArgs e)
