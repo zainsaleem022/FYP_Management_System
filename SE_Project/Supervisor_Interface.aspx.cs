@@ -11,4 +11,15 @@ public partial class Supervisor_Interface : System.Web.UI.Page
     {
 
     }
+
+
+    protected void Unnamed4_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Faculty.aspx");
+    }
+
+    protected void Unnamed3_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("supervisor_add_fyp_to_supervision.aspx");
+    }
 }
