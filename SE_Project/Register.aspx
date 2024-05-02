@@ -22,12 +22,8 @@
             <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
         </p>
         <p>
-            <asp:DropDownList ID="DropDownList1" runat="server">
-                <asp:ListItem>Committee</asp:ListItem>
-                <asp:ListItem>Student</asp:ListItem>
-                <asp:ListItem>Supervisor</asp:ListItem>
-                <asp:ListItem>Panel</asp:ListItem>
-            </asp:DropDownList>
+            Name:
+            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
         </p>
         <p>
             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Register" />

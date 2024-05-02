@@ -8,13 +8,13 @@ using System.Web;
 /// </summary>
 public class Student : User
 {
-    private string _groupId;
+    private int _groupId;
     private string _email;
     private string _studentName;
 
     public Student() : base()
     {
-        _groupId = "";
+        _groupId = 0;
         _email = "";
         _studentName = "";
         // Default constructor
@@ -23,14 +23,16 @@ public class Student : User
     public Student(string id, string pwd,string role)
         : base(id, pwd, role)
     {
-        _groupId = "";
+        _groupId = 0;
         _email = "";
         _studentName = "";
         dbhandler dbhandler = dbhandler.Instance;
-        dbhandler.findStudent(id,ref _groupId,ref _email,ref _studentName);
+        dbhandler.findStudent(id, ref _email,ref _studentName);
+        _groupId = dbhandler.get_student_fyp_group_id(id);
+
     }
 
-    public string GroupId
+    public int GroupId
     {
         get { return _groupId; }
         set { _groupId = value; }

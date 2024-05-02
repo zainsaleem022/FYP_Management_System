@@ -11,30 +11,40 @@
         <div>
         </div>
         <div class="wlp-whitespace-only-element-expansion">
-            <asp:Label runat="server" Text="Project Details" ID="ctl00"></asp:Label>&nbsp;</div>
+            <asp:Label runat="server" Text="Project Details" ID="project_details_form_title_label"></asp:Label>&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">
-            <asp:Label runat="server" Text="Group Members" ID="ctl01"></asp:Label>&nbsp;</div>
+            <asp:Label runat="server" Text="Group Members" ID="group_member_static_label"></asp:Label>&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">
+            <asp:Label runat="server" Text="" ID="group_members_from_db_label"></asp:Label>&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">
-            <asp:Label runat="server" Text="Supervisor" ID="ctl02"></asp:Label>&nbsp;</div>
+            <asp:Label runat="server" Text="Supervisor" ID="supervisor_static_label"></asp:Label>&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">
+            <asp:Label runat="server" Text="" ID="supervisor_from_db_label"></asp:Label>&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;<asp:Label runat="server" Text="Project Title" ID="ctl07"></asp:Label></div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;<asp:Label runat="server" Text="Description" ID="ctl08"></asp:Label></div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;<asp:Label runat="server" Text="Grade" ID="ctl09"></asp:Label></div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;<asp:Label runat="server" Text="Feedbacks" ID="ctl10"></asp:Label></div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;
+            <asp:Label runat="server" Text="Title" ID="title_static_label"></asp:Label></div>
+        <div class="wlp-whitespace-only-element-expansion">
+            <asp:Label runat="server" Text="" ID="title_from_db_label"></asp:Label>&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;
+            <asp:Label runat="server" Text="Description" ID="description_static_label"></asp:Label></div>
+        <div class="wlp-whitespace-only-element-expansion">
+            <asp:Label runat="server" Text="" ID="description_from_db_label"></asp:Label>&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;
+            <asp:Label runat="server" Text="Details" ID="details_static_label"></asp:Label></div>
+        <div class="wlp-whitespace-only-element-expansion">
+            <asp:Label runat="server" Text="" ID="details_from_db_label"></asp:Label>&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;
+            <asp:Button runat="server" Text="Back" OnClick="Unnamed1_Click"></asp:Button></div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
