@@ -108,9 +108,8 @@ public partial class supervisor_add_fyp_to_supervision : System.Web.UI.Page
         {
             // If the supervisor can supervise more fyps, proceed to assign the new fyp
             AssignFypToSupervisor(fyp_to_supervise, supervisor_id);
+            Response.Write("<script>alert('FYP Assigned for your Supervision Successfully'); window.location.href = window.location.href;</script>");
         }
-
-        Response.Redirect(Request.Url.AbsoluteUri);
     }
 
 

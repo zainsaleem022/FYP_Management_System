@@ -24,7 +24,7 @@
         <div class="sidebar">
             <ul>
                             <li>
-                <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/">
+                <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/supervisor_view_currently_supervising_fyps.aspx">
                     <button>
                         <img src="images/home_icon.png" alt="Home" />
                         <span>FYPs Supervising</span>
