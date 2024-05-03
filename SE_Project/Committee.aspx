@@ -40,6 +40,15 @@
                     </button>
                 </asp:HyperLink>
             </li>
+                <li>
+                <%-- Dummy Hyperlinks --%>
+                    <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/committee_assign_panel_to_fyp.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>Assign FYP to Panel</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
             </ul>
         </div>
         <div class="content">
