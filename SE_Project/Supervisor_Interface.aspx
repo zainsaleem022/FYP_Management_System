@@ -64,12 +64,17 @@
                     </button>
                 </asp:HyperLink>
             </li>
+                            <li>
+            </li>
+                            
             </ul>
         </div>
         <div class="content">
             <form id="form2" runat="server">
+                <asp:Button ID="Button1" runat="server" Text="Check Evaluation of Fyp" OnClick="Button1_Click" />
                 <div class="section">
-                    <h3>Informationn</h3>
+                    <h3>Informationn<asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Check Feedback of FYP" />
+                    </h3>
                     <div class="box">
                         <table>
                             <tr>

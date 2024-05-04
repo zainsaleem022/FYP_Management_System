@@ -39,7 +39,11 @@ public partial class Panel_Interface : System.Web.UI.Page
 
     protected void Button4_Click(object sender, EventArgs e)
     {
-
+        dbhandler dbhandler = dbhandler.Instance;
+        if (dbhandler.getStatus() ==1 )
+            Response.Redirect("EvaluationForm.aspx");
+        else
+            Response.Write("<script>alert('Evaluation Forms not yet Generated.');</script>");
     }
 
     protected void gridView1_SelectedIndexChanged(object sender, EventArgs e)

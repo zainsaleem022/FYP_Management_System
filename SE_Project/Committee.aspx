@@ -50,9 +50,11 @@
                 </asp:HyperLink>
             </li>
             </ul>
+            
         </div>
         <div class="content">
             <form id="form2" runat="server">
+                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Generate Evaluation Forms" />
                 <div class="section">
                     <h3>Informationn</h3>
                     <div class="box">
@@ -69,9 +71,7 @@
                                 <th>Email:</th>
                                 <td><asp:Label runat="server" ID="lblEmail"></asp:Label></td>
                             </tr>
-                            <tr>
-                            </tr>
-                        </table>
+                            </table>
                     </div>
 
                 </div>
