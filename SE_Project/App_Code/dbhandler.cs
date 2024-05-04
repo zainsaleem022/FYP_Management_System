@@ -474,4 +474,41 @@ public class dbhandler
 
         }
     }
+    public int getStatus()
+    {
+        string query = "Select * from evaluation_status";
+        connection.Open();
+        int status = 0;
+        using (SqlCommand command = new SqlCommand(query, connection))
+        {
+
+
+            // Execute the query and get the result
+            object result = command.ExecuteScalar();
+
+            // Check if the result is not null and convert it to integer
+            if (result != null && result != DBNull.Value)
+            {
+                status = Convert.ToInt32(result);
+                connection.Close();
+                return status;
+            }
+        }
+        return status;
+    }
+    public void setStatus()
+    {
+        string query = "UPDATE Evaluation_status SET status = 1; ";
+        connection.Open();
+        int status = 0;
+        using (SqlCommand command = new SqlCommand(query, connection))
+        {
+
+
+            // Execute the query and get the result
+            status = command.ExecuteNonQuery();
+
+        }
+        connection.Close();
+    }
 }

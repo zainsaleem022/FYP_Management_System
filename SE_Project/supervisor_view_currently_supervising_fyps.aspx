@@ -4,20 +4,87 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+         <title>Supervisor View Panel</title>
+    <link rel="stylesheet" href="mainpage_styles.css"/>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:Label runat="server" Text="FYPs Under Supervision" ID="supervisor_view_currently_supervising_fyps_form_title_label"></asp:Label>
+
+    <div class="header-container">
+        <header class="header">
+            <div class="left-section"></div>
+            <div class="center-section">
+                <h2>Supervisor ➡ View FYPs Currently Supervising</h2>
+            </div>
+            <div class="right-section">
+                <a href="Login.aspx" class="back-button">Log Out</a>
+            </div>
+        </header>
+    </div>
+
+   <div class="container main-container">
+        <div class="sidebar">
+            <ul>
+                            <li>
+                <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/supervisor_view_currently_supervising_fyps.aspx">
+                    <button>
+                        <img src="images/home_icon.png" alt="Home" />
+                        <span>FYPs Supervising</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+            <li>
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/">
+                    <button>
+                        <img src="images/home_icon.png" alt="Home" />
+                        <span>Provide Review</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+            <li>
+                <%-- Dummy Hyperlinks --%>
+                <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>View Deadlines</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+                 <li>
+                <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>Check Supervision Requests</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+                 <li>
+                <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/supervisor_add_fyp_to_supervision.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>Add FPY to Supervision</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+            </ul>
         </div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">
-            <asp:Label runat="server" Text="" ID="no_fyps_found_as_currently_supervisioning_label"></asp:Label>&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+
+        <div class="content">
+                   <div>
+            <br />
+            <br />
+            <br />
+           </div>
+
+            <div>
+                       <asp:Label runat="server" Text="" ID="no_fyps_found_as_currently_supervisioning_label"></asp:Label>
+            </div>
+        <form id="form2" runat="server">
+
+
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
+                   
+                   CellPadding="2" Height="258px" Width="1119px" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" style="margin-bottom: 0px">
+ 
             <Columns>
                 <asp:BoundField DataField="fyp_id" HeaderText="FYP ID" />
                 <asp:BoundField DataField="fyp_title" HeaderText="FYP Title" />
@@ -26,32 +93,14 @@
                 <asp:BoundField DataField="panel_member_names" HeaderText="Panel Members" />
             </Columns>
         </asp:GridView>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">
-            <asp:Button runat="server" Text="Back" OnClick="Unnamed1_Click"></asp:Button>&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
-    </form>
+        </form>
+        </div>
+    </div>
 </body>
 </html>
+
+
+
+
+
+

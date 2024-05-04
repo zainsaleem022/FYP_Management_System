@@ -14,6 +14,7 @@ public partial class Faculty : System.Web.UI.Page
         // Create a Student object using the User object and additional student details
         Faculty_class faculty = new Faculty_class(user.getId(), user.getPassword(), user.getRole());
         Session["faculty_user"] = faculty;
+        Session["faculty_id"] = user.getId();
     }
 
     protected void Button1_Click(object sender, EventArgs e)

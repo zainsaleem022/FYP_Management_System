@@ -25,4 +25,14 @@ public partial class Supervisor_Interface : System.Web.UI.Page
     {
         Response.Redirect("supervisor_add_fyp_to_supervision.aspx");
     }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("supervisor_view_Evaluation.aspx");
+    }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("supervisor_view_feedback.aspx");
+    }
 }
