@@ -1,26 +1,27 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Supervisor_Interface.aspx.cs" Inherits="Supervisor_Interface" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="supervisor_view_currently_supervising_fyps.aspx.cs" Inherits="supervisor_view_currently_supervising_fyps" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-         <title>FYP Committee Profile - Home</title>
+         <title>Supervisor View Panel</title>
     <link rel="stylesheet" href="mainpage_styles.css"/>
 </head>
 <body>
+
     <div class="header-container">
         <header class="header">
             <div class="left-section"></div>
             <div class="center-section">
-                <h2>Supervisor Profile</h2>
+                <h2>Supervisor ➡ View FYPs Currently Supervising</h2>
             </div>
             <div class="right-section">
-                <a href="Login.aspx" class="back-button">Log Out</a
+                <a href="Login.aspx" class="back-button">Log Out</a>
             </div>
         </header>
     </div>
 
-    <div class="container main-container">
+   <div class="container main-container">
         <div class="sidebar">
             <ul>
                             <li>
@@ -64,44 +65,39 @@
                     </button>
                 </asp:HyperLink>
             </li>
-                            <li>
-            </li>
-                            
             </ul>
         </div>
+
         <div class="content">
-            <form id="form2" runat="server">
-                <asp:Button ID="Button1" runat="server" Text="Check Evaluation of Fyp" OnClick="Button1_Click" />
-                <div class="section">
-                    <h3>Informationn<asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Check Feedback of FYP" />
-                    </h3>
-                    <div class="box">
-                        <table>
-                            <tr>
-                                <th>Name:</th>
-                                <td><asp:Label runat="server" ID="Label2"></asp:Label></td>
-                            </tr>
-                            <tr>
-                                <th>Username:</th>
-                                <td><asp:Label runat="server" ID="Label3"></asp:Label></td>
-                            </tr>
-                            <tr>
-                                <th>Email:</th>
-                                <td><asp:Label runat="server" ID="Label4"></asp:Label></td>
-                            </tr>
-                            <tr>
-                            </tr>
-                        </table>
-                    </div>
+                   <div>
+            <br />
+            <br />
+            <br />
+           </div>
 
-                </div>
+            <div>
+                       <asp:Label runat="server" Text="" ID="no_fyps_found_as_currently_supervisioning_label"></asp:Label>
+            </div>
+        <form id="form2" runat="server">
 
-            </form>
+
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
+                   
+                   CellPadding="2" Height="258px" Width="1119px" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" style="margin-bottom: 0px">
+ 
+            <Columns>
+                <asp:BoundField DataField="fyp_id" HeaderText="FYP ID" />
+                <asp:BoundField DataField="fyp_title" HeaderText="FYP Title" />
+                <asp:BoundField DataField="fyp_description" HeaderText="FYP Description" />
+                <asp:BoundField DataField="group_member_names" HeaderText="Group Members" />
+                <asp:BoundField DataField="panel_member_names" HeaderText="Panel Members" />
+            </Columns>
+        </asp:GridView>
+        </form>
         </div>
     </div>
 </body>
 </html>
-
 
 
 

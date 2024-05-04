@@ -4,7 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+     <title>FYP Committee Profile - Home</title>
+    <link rel="stylesheet" href="mainpage_styles.css"/>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -50,3 +51,6 @@
     </form>
 </body>
 </html>
+
+
+

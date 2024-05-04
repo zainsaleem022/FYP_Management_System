@@ -145,36 +145,6 @@ table {
 
 
 
-/* GPA */
-.bar-graph {
-    position: relative;
-    width: auto;
-    height: 200px;
-    background-color: #007bff;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.bar {
-    position: relative;
-    height: 100%;
-    background-color: #007bff;
-    transition: width 0.3s ease;
-}
-
-    .bar:hover {
-        opacity: 0.8;
-        cursor: pointer;
-    }
-
-    .bar::before {
-        content: attr(title);
-        display: block;
-        text-align: center;
-        font-size: 14px;
-        line-height: 30px;
-        color: #fff;
-    }
 
 .vertical-text {
     position: absolute;

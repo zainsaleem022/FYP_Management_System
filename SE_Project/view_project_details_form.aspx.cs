@@ -89,8 +89,8 @@ public partial class view_project_details_form : System.Web.UI.Page
                                         string supervisorEmail = supervisorInfoReader["email"].ToString();
 
                                         // Display supervisor information
-                                        supervisor_name_from_db_label.Text = $"Name: {supervisorName}";
-                                        supervisor_email_from_db_label.Text = $"Email: {supervisorEmail}";
+                                        supervisor_name_from_db_label.Text = $" {supervisorName}";
+                                        supervisor_email_from_db_label.Text = $" {supervisorEmail}";
                                     }
                                     else
                                     {
