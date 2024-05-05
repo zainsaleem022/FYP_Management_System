@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -41,5 +42,31 @@ public partial class student_interface : System.Web.UI.Page
     protected void Unnamed6_Click(object sender, EventArgs e)
     {
         Response.Redirect("Login.aspx");
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Student_view_review.aspx");
+    }
+    protected void HyperLink3_Click(object sender, EventArgs e)
+    {
+        // Cast the EventArgs object to a CancelEventArgs object
+        CancelEventArgs cancelArgs = (CancelEventArgs)e;
+
+        dbhandler dbhandler = dbhandler.Instance;
+        int status = dbhandler.getStatus();
+
+        if (status == 1)
+        {
+            // Navigate to the next page
+            Response.Redirect("student_view_evaluation.aspx");
+        }
+        else
+        {
+            // Stay on the same page
+            Response.Write("<script>alert('Evaluations not yet opened.')</script>");
+            // Cancel the navigation
+            cancelArgs.Cancel = true;
+        }
     }
 }

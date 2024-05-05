@@ -41,8 +41,11 @@ public class dbhandler
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Parameters.AddWithValue("@password", password);
 
-            // Open connection to the database
-            connection.Open();
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
+
+                // Open connection to the database
+                connection.Open();
 
             // Execute the query
             using (SqlDataReader reader = cmd.ExecuteReader())
@@ -427,10 +430,10 @@ public class dbhandler
         return groupId;
     }
 
-    public int RegisterFaculty(string id, string password, string name, string email)
+    public int RegisterFaculty(string id, string password, string name, string email,int p, int s, int c)
     {
         // Perform the student registration
-        string registerFacultyQuery = "INSERT INTO faculty (id, supervisor,panel,committee,faculty_name, email) VALUES (@id, 0,0,0, @name, @email)";
+        string registerFacultyQuery = "INSERT INTO faculty (id, supervisor,panel,committee,faculty_name, email) VALUES (@id, @p,@s,@c, @name, @email)";
         string registerUserQuery = "INSERT INTO users (id, pwd, user_role) VALUES (@id, @password, 'faculty')";
         connection.Open();
         SqlTransaction transaction = connection.BeginTransaction();
@@ -441,6 +444,9 @@ public class dbhandler
 
 
             // Add parameters for student registration
+            cmdFaculty.Parameters.AddWithValue("@p", p);
+            cmdFaculty.Parameters.AddWithValue("@s", s);
+            cmdFaculty.Parameters.AddWithValue("@c", c);
             cmdFaculty.Parameters.AddWithValue("@id", id);
             cmdFaculty.Parameters.AddWithValue("@name", name);
             cmdFaculty.Parameters.AddWithValue("@email", email);
