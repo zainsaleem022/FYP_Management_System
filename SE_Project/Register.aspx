@@ -75,6 +75,11 @@
                             <td><asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Register" /></td>
                             </tr>
                         </table>
+                        <asp:CheckBoxList ID="CheckBoxList1" runat="server">
+                            <asp:ListItem>Panel</asp:ListItem>
+                            <asp:ListItem>Supervisor</asp:ListItem>
+                            <asp:ListItem>Committee</asp:ListItem>
+                        </asp:CheckBoxList>
                     </div>
 
                 </div>
