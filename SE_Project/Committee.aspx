@@ -22,6 +22,7 @@
 
     <div class="container main-container">
         <div class="sidebar">
+            
             <ul>
             <li>
                 <asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl="~/Register.aspx">
@@ -49,12 +50,13 @@
                     </button>
                 </asp:HyperLink>
             </li>
-                               <li>
+                </li>
+                <li>
                 <%-- Dummy Hyperlinks --%>
-                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/committee_makes_new_panel.aspx">
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/committee_add_assignment.aspx">
                     <button>
                         <img src="images/form_icon.png" alt="Attendance" />
-                        <span>Create Panel</span>
+                        <span>Add New Assignment</span>
                     </button>
                 </asp:HyperLink>
             </li>

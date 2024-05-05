@@ -32,7 +32,7 @@
                 </asp:HyperLink>
             </li>
             <li>
-                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/">
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/provideReview.aspx">
                     <button>
                         <img src="images/home_icon.png" alt="Home" />
                         <span>Provide Review</span>

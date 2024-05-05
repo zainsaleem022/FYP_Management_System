@@ -65,12 +65,22 @@
                     </button>
                 </asp:HyperLink>
             </li>
+                <li>
+                <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/student_view_assignments.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>View Assignments</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+
             </ul>
         </div>
         <div class="content">
             <form id="form1" runat="server">
                 <div class="section">
-                    <h3>Informationn</h3>
+                    <h3>Informationn<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="View Supervisor Review" />
+                    </h3>
                     <div class="box">
                         <table>
                             <tr>
