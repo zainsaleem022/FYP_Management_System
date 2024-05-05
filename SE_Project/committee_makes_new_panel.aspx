@@ -1,19 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="committee_makes_new_panel.aspx.cs" Inherits="committee_makes_new_panel" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-        <title>FYP Committee Profile - Register Students</title>
+        <title>FYP Committee Profile - Make Panel</title>
     <link rel="stylesheet" href="mainpage_styles.css"/>
 </head>
-
 <body>
     <div class="header-container">
         <header class="header">
             <div class="left-section"></div>
             <div class="center-section">
-                <h2>FYP Committee Profile ➡ Register </h2>
+                <h2>FYP Committee Profile</h2>
             </div>
             <div class="right-section">
                 <a href="Login.aspx" class="back-button">Log Out</a
@@ -50,7 +49,7 @@
                     </button>
                 </asp:HyperLink>
             </li>
-                               <li>
+               <li>
                 <%-- Dummy Hyperlinks --%>
                     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/committee_makes_new_panel.aspx">
                     <button>
@@ -60,30 +59,50 @@
                 </asp:HyperLink>
             </li>
             </ul>
+            
         </div>
         <div class="content">
             <form id="form2" runat="server">
                 <div class="section">
-                    <h3>Register Faculty</h3>
+                    <h3>Informationn</h3>
                     <div class="box">
-                        <table>
 
+                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+    <Columns>
+        <asp:BoundField DataField="id" HeaderText="ID" />
+        <asp:BoundField DataField="faculty_name" HeaderText="Faculty Name" />
+    </Columns>
+</asp:GridView>
+                        <div>
+                            <br />
+                            <br />
+                        </div>
+
+                        <table>
                             <tr>
-                                <th>ID:</th>
-                               <td> <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox></td>
+                                <th>Panel Member 1 ID: </th>
+                                <td><asp:TextBox ID="TextBox1" runat="server" ></asp:TextBox></td>
                             </tr>
                             <tr>
-                                <th>Password:</th>
-                                <td><asp:TextBox ID="TextBox2" runat="server" TextMode="Password"></asp:TextBox></td>
+                                <th>Panel Member 2 ID: </th>
+                                <td><asp:TextBox ID="TextBox2" runat="server" ></asp:TextBox></td>
                             </tr>
-                             <tr>
-                                <th>Name:</th>
+                            <tr>
+                                <th>Panel Member 3 ID: </th>
                                 <td><asp:TextBox ID="TextBox3" runat="server" ></asp:TextBox></td>
                             </tr>
-                            <tr>
-                            <td><asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Register" /></td>
+                             <tr>
+                                <th>Panel Member 4 ID: </th>
+                                <td><asp:TextBox ID="TextBox4" runat="server" ></asp:TextBox></td>
                             </tr>
-                        </table>
+                            <tr>
+                                <th>Panel Member 5 ID: </th>
+                                <td><asp:TextBox ID="TextBox5" runat="server" ></asp:TextBox></td>
+                            </tr>
+                            <tr>
+                                <th><asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" />  </th>
+                            </tr>
+                            </table>
                     </div>
 
                 </div>
@@ -93,14 +112,4 @@
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
 

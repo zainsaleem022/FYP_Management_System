@@ -49,6 +49,15 @@
                     </button>
                 </asp:HyperLink>
             </li>
+                               <li>
+                <%-- Dummy Hyperlinks --%>
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/committee_makes_new_panel.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>Create Panel</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
             </ul>
         </div>
         <div class="content">

@@ -15,7 +15,9 @@ public partial class supervisor_view_feedback : System.Web.UI.Page
         if (!IsPostBack)
         {
             // Establish a database connection
-            string connectionString = "Data Source=IK\\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True";
+            dbhandler db = dbhandler.Instance;
+
+            string connectionString = db.connectionstring;
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -43,7 +45,9 @@ public partial class supervisor_view_feedback : System.Web.UI.Page
         List<EData> data = new List<EData>();
         string selectedFypId = DropDownList1.SelectedValue; // Get the selected FYP ID from the dropdown
 
-        string connectionString = "Data Source=IK\\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True";
+        dbhandler db = dbhandler.Instance;
+
+        string connectionString = db.connectionstring;
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             string query = @"

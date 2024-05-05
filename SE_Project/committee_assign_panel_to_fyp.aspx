@@ -50,6 +50,15 @@
                     </button>
                 </asp:HyperLink>
             </li>
+                               <li>
+                <%-- Dummy Hyperlinks --%>
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/committee_makes_new_panel.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>Create Panel</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
             </ul>
         </div>
                    <asp:Label runat="server" Text="Available FYPs" ID="supervisor_add_fyp_for_supervision_form_title_label" ></asp:Label>
