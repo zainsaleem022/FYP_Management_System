@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-         <title>FYP Committee Profile - Home</title>
+         <title>Supervisor - Home</title>
     <link rel="stylesheet" href="mainpage_styles.css"/>
 </head>
 <body>
@@ -41,18 +41,18 @@
             </li>
             <li>
                 <%-- Dummy Hyperlinks --%>
-                <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/">
+                <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/supervisor_view_feedback.aspx">
                     <button>
                         <img src="images/form_icon.png" alt="Attendance" />
-                        <span>View Deadlines</span>
+                        <span>View Feedback</span>
                     </button>
                 </asp:HyperLink>
             </li>
                  <li>
-                <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/">
+                <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/supervisor_view_Evaluation.aspx">
                     <button>
                         <img src="images/form_icon.png" alt="Attendance" />
-                        <span>Check Supervision Requests</span>
+                        <span>View Evaluation</span>
                     </button>
                 </asp:HyperLink>
             </li>
@@ -71,9 +71,8 @@
         </div>
         <div class="content">
             <form id="form2" runat="server">
-                <asp:Button ID="Button1" runat="server" Text="Check Evaluation of Fyp" OnClick="Button1_Click" />
                 <div class="section">
-                    <h3>Informationn<asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Check Feedback of FYP" />
+                    <h3>Information
                     </h3>
                     <div class="box">
                         <table>

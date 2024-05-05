@@ -20,7 +20,8 @@ public partial class student_view_feedback : System.Web.UI.Page
     {
         List<EvaluationData> data = new List<EvaluationData>();
         string studentId = Session["student_id"].ToString();
-        string connectionString = "Data Source=IK\\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True";
+        dbhandler db = dbhandler.Instance;
+        string connectionString = db.connectionstring;
 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {

@@ -58,6 +58,16 @@
                     </button>
                 </asp:HyperLink>
             </li>
+
+                                <li>
+                <%-- Dummy Hyperlinks --%>
+                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/committee_add_assignment.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>Add New Assignment</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
             </ul>
         </div>
         <div class="content">

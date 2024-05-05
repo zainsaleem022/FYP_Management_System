@@ -15,9 +15,10 @@ public partial class provideReview : System.Web.UI.Page
         {
             // Get the supervisor ID from the session or other sources
             string supervisorId = Session["faculty_id"].ToString();
-
+            dbhandler db = dbhandler.Instance;
+            string constring = db.connectionstring;
             // Load FYPs that the supervisor is part of
-            using (SqlConnection connection = new SqlConnection("Data Source = IK\\SQLEXPRESS; Initial Catalog = fyp1; Integrated Security = True"))
+            using (SqlConnection connection = new SqlConnection(constring))
             {
                 connection.Open();
 
@@ -57,9 +58,10 @@ public partial class provideReview : System.Web.UI.Page
 
         // Get the review text from a TextBox control or any other source
         string reviewText = TextBox1.Text;
-
+        dbhandler db = dbhandler.Instance;
+        string constring = db.connectionstring;
         // Create a SQL connection
-        using (SqlConnection connection = new SqlConnection("Data Source = IK\\SQLEXPRESS; Initial Catalog = fyp1; Integrated Security = True"))
+        using (SqlConnection connection = new SqlConnection(constring))
         {
             connection.Open();
 

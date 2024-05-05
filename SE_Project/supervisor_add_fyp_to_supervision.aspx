@@ -33,7 +33,7 @@
                 </asp:HyperLink>
             </li>
             <li>
-                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/">
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/provideReview.aspx">
                     <button>
                         <img src="images/home_icon.png" alt="Home" />
                         <span>Provide Review</span>
@@ -42,18 +42,18 @@
             </li>
             <li>
                 <%-- Dummy Hyperlinks --%>
-                <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/">
+                <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/supervisor_view_feedback.aspx">
                     <button>
                         <img src="images/form_icon.png" alt="Attendance" />
-                        <span>View Deadlines</span>
+                        <span>View Feedback</span>
                     </button>
                 </asp:HyperLink>
             </li>
                  <li>
-                <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/">
+                <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/supervisor_view_Evaluation.aspx">
                     <button>
                         <img src="images/form_icon.png" alt="Attendance" />
-                        <span>Check Supervision Requests</span>
+                        <span>View Evaluation</span>
                     </button>
                 </asp:HyperLink>
             </li>

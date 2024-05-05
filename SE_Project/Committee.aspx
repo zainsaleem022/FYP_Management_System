@@ -60,6 +60,14 @@
                     </button>
                 </asp:HyperLink>
             </li>
+                <li>
+               <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/committee_makes_new_panel.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>Create Panel</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
             </ul>
             
         </div>
