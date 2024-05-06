@@ -25,7 +25,7 @@ public class dbhandler
     // Private fields
     private string connectionstring;
     public SqlConnection connection;
-
+    public string getConnectionString() { return connectionstring; }
     // Public method to perform login
     public int login(string id, string password, ref string userrole)
     {

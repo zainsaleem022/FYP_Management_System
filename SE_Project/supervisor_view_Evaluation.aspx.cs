@@ -48,7 +48,8 @@ public partial class supervisor_view_Evaluation : System.Web.UI.Page
         List<evData> data = new List<evData>();
         List<evData> dataWithScores = new List<evData>();
         int selectedFypId = Convert.ToInt32(DropDownList1.SelectedValue);
-        string connectionString = "Data Source=IK\\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True";
+        dbhandler dbhandler = dbhandler.Instance;
+        string connectionString = dbhandler.getConnectionString();
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             string query = @"

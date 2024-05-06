@@ -50,33 +50,45 @@ public partial class provideReview : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         // Get the selected FYP ID from the dropdown list
-        int selectedFYPId = Convert.ToInt32(DropDownList1.SelectedValue);
+        //int selectedFYPId = Convert.ToInt32(DropDownList1.SelectedValue);
+
+        int selectedFYPId;
+        if (!string.IsNullOrEmpty(DropDownList1.SelectedValue))
+        {
+            selectedFYPId = Convert.ToInt32(DropDownList1.SelectedValue);
+            string supervisorId = Session["faculty_id"].ToString();
+
+            // Get the review text from a TextBox control or any other source
+            string reviewText = TextBox1.Text;
+            dbhandler dbhandler = dbhandler.Instance;
+            string connectionString = dbhandler.getConnectionString();
+            // Create a SQL connection
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // SQL query to insert data into the supervisor_review table
+                string query = "INSERT INTO supervisor_review (supervisor_id, fyp_id, review) VALUES (@SupervisorId, @FYPId, @Review)";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@SupervisorId", supervisorId);
+                command.Parameters.AddWithValue("@FYPId", selectedFYPId);
+                command.Parameters.AddWithValue("@Review", reviewText);
+
+                // Execute the query
+                command.ExecuteNonQuery();
+                Response.Write("<script>alert('Review Submitted');</script>");
+                connection.Close();
+            }
+            Response.Redirect(Request.Path + "?afterButtonClick=true");
+        }
+        else
+        {
+            Response.Write("<script>alert('No FYP ID selected');</script>");
+        }
 
         // Get the supervisor ID from the session or other sources
-        string supervisorId = Session["faculty_id"].ToString();
-
-        // Get the review text from a TextBox control or any other source
-        string reviewText = TextBox1.Text;
-
-        // Create a SQL connection
-        using (SqlConnection connection = new SqlConnection("Data Source = IK\\SQLEXPRESS; Initial Catalog = fyp1; Integrated Security = True"))
-        {
-            connection.Open();
-
-            // SQL query to insert data into the supervisor_review table
-            string query = "INSERT INTO supervisor_review (supervisor_id, fyp_id, review) VALUES (@SupervisorId, @FYPId, @Review)";
-
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@SupervisorId", supervisorId);
-            command.Parameters.AddWithValue("@FYPId", selectedFYPId);
-            command.Parameters.AddWithValue("@Review", reviewText);
-
-            // Execute the query
-            command.ExecuteNonQuery();
-            Response.Write("<script>alert('Review Submitted');</script>");
-            connection.Close();
-        }
-        Response.Redirect(Request.Path + "?afterButtonClick=true");
+       
     }
 
 }

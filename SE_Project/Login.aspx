@@ -55,7 +55,7 @@
                 <asp:TextBox class ="form-control" placeholder="User ID" ID = "TextBox1" runat="server"></asp:TextBox>
             </div>
             <div class="form-group">
-                <asp:TextBox class ="form-control" placeholder="Password" ID ="TextBox2" runat="server"></asp:TextBox>
+                <asp:TextBox class ="form-control" placeholder="Password" ID ="TextBox2" TextMode="Password" runat="server"></asp:TextBox>
             </div>
             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="login" Width="61px" />
             <a href="Register.aspx" class="btn btn-link btn-block" runat="server" id="btnSignUp">Sign Up</a>

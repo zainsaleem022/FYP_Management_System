@@ -15,7 +15,8 @@ public partial class supervisor_view_feedback : System.Web.UI.Page
         if (!IsPostBack)
         {
             // Establish a database connection
-            string connectionString = "Data Source=IK\\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True";
+            dbhandler dbhandler = dbhandler.Instance;
+            string connectionString = dbhandler.getConnectionString();
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
