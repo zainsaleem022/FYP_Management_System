@@ -4,61 +4,83 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+        <title>Panel - Home</title>
+    <link rel="stylesheet" href="mainpage_styles.css"/>
+
 </head>
-<body style="height: 418px">
-    <form id="form1" runat="server">
-        <div>
-            <asp:Label ID="Label1" runat="server" Text="Panel Interface"></asp:Label>
-        </div>
-        <p>
-            <asp:Button ID="Button1" runat="server" Height="24px" OnClick="Button1_Click" style="margin-top: 24px" Text="View Panel" />
-            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" style="margin-left: 49px" Text="View FYPs Overseen by Panel" Width="187px" />
-        </p>
-        <p>
-            &nbsp;</p>
-        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" style="margin-top: 0px" Text="View Deadlines" />
-        <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" style="height: 26px; margin-left: 35px" Text="Fill Evalution Form" Width="161px" />
-        <br />
-        <br />
-        <br />
-
-
-
-                    <div class="content">
-
-            <div>
-                Panel Information<br />
-                <br />
-                <br />
+<body>
+    <div class="header-container">
+        <header class="header">
+            <div class="left-section"></div>
+            <div class="center-section">
+                <h2>FYP Committee Profile</h2>
             </div>
-            <asp:GridView ID="gridView1" runat="server" AutoGenerateColumns="False" 
-                    OnSelectedIndexChanged="gridView1_SelectedIndexChanged"
-                    DataKeyNames="panel_id" OnRowCommand="gridView1_RowCommand" CellPadding="4" Height="258px" Width="1119px" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" style="margin-bottom: 0px">
-                    <Columns>
-                        <asp:BoundField DataField="panel_id" HeaderText="Panel ID" />
-                        <asp:BoundField DataField="faculty_name" HeaderText="Name" />
-                        <asp:BoundField DataField="email" HeaderText="Email" />
-                        <asp:BoundField DataField="id" HeaderText="Faculty ID" />
-                
-                    
-                    
-                    </Columns>
-                    <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
-                    <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
-                    <PagerStyle BackColor="#99CCCC" ForeColor="#003399" HorizontalAlign="Left" />
-                    <RowStyle BackColor="White" ForeColor="#003399" />
-                    <SelectedRowStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
-                    <SortedAscendingCellStyle BackColor="#EDF6F6" />
-                    <SortedAscendingHeaderStyle BackColor="#0D4AC4" />
-                    <SortedDescendingCellStyle BackColor="#D6DFDF" />
-                    <SortedDescendingHeaderStyle BackColor="#002876" />
-                </asp:GridView>
+            <div class="right-section">
+                <a href="Login.aspx" class="back-button">Log Out</a
+            </div>
+        </header>
+    </div>
 
+    <div class="container main-container">
+        <div class="sidebar">
+            <ul>
+                            <li>
+                <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/panel_view_panel.aspx">
+                    <button>
+                        <img src="images/home_icon.png" alt="Home" />
+                        <span>View Panel</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+            <li>
+                <asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl="~/panel_member_view_currently_assigned_fyps.aspx">
+                    <button>
+                        <img src="images/home_icon.png" alt="Home" />
+                        <span>View FYPs Under Panel</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+            <li>
+                <%-- Dummy Hyperlinks --%>
+                <asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl="~/">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>View Deadlines</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+
+
+
+            </ul>
         </div>
+        <div class="content">
+            <form id="form2" runat="server">
+        <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" style="height: 26px; margin-left: 35px" Text="Fill Evalution Form" Width="161px" />
+                <div class="section">
+                    <h3>Informationn</h3>
+                    <div class="box">
+                        <table>
+                            <tr>
+                                <th>Name:</th>
+                                <td><asp:Label runat="server" ID="lblName"></asp:Label></td>
+                            </tr>
+                            <tr>
+                                <th>Username:</th>
+                                <td><asp:Label runat="server" ID="lblUsername"></asp:Label></td>
+                            </tr>
+                            <tr>
+                                <th>Email:</th>
+                                <td><asp:Label runat="server" ID="lblEmail"></asp:Label></td>
+                            </tr>
+                            </table>
+                    </div>
 
-    </form>
+                </div>
 
-
+            </form>
+        </div>
+    </div>
 </body>
 </html>
+

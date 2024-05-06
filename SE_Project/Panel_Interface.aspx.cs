@@ -10,17 +10,15 @@ public partial class Panel_Interface : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Faculty_class faculty = (Faculty_class)Session["faculty_user"];
+
+        Faculty_class committee = (Faculty_class)Session["faculty_user"];
+        lblEmail.Text = committee.Email;
+        lblName.Text = committee.Name;
+        lblUsername.Text = committee.getId();
+
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        Faculty_class faculty = (Faculty_class)Session["faculty_user"];
-        Panel_Member panel = new Panel_Member(faculty);
-        DataTable table = panel.DisplayPanelMembers();
-        gridView1.DataSource = table;
-        gridView1.DataBind();
-    }
+
 
     protected void Button2_Click(object sender, EventArgs e)
     {
