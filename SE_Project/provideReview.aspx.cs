@@ -15,9 +15,10 @@ public partial class provideReview : System.Web.UI.Page
         {
             // Get the supervisor ID from the session or other sources
             string supervisorId = Session["faculty_id"].ToString();
-
+            dbhandler dbhandler = dbhandler.Instance;
+            string connectionString = dbhandler.getConnectionString();
             // Load FYPs that the supervisor is part of
-            using (SqlConnection connection = new SqlConnection("Data Source = IK\\SQLEXPRESS; Initial Catalog = fyp1; Integrated Security = True"))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
