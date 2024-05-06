@@ -15,7 +15,10 @@ public partial class EvaluationForm : System.Web.UI.Page
         if (!IsPostBack)
         {
             // Establish a database connection
-            string connectionString = "Data Source=IK\\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True";
+
+            dbhandler db = dbhandler.Instance;
+
+            string connectionString = db.connectionstring;
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -60,7 +63,9 @@ public partial class EvaluationForm : System.Web.UI.Page
         int fypId = int.Parse(DropDownList1.SelectedValue);
 
         // Establish a database connection
-        string connectionString = "Data Source=IK\\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True";
+        dbhandler db = dbhandler.Instance;
+
+        string connectionString = db.connectionstring;
         using (SqlConnection con = new SqlConnection(connectionString))
         {
             con.Open();

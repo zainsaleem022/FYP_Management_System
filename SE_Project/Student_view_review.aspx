@@ -15,7 +15,7 @@
                     <asp:BoundField DataField="review" HeaderText="review" SortExpression="review" />
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=IK\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [student_id], [review] FROM [student_review] WHERE ([student_id] = @student_id)">
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=LAPTOP-RU4CV3CE\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [student_id], [review] FROM [student_review] WHERE ([student_id] = @student_id)">
                 <SelectParameters>
                     <asp:SessionParameter Name="student_id" SessionField="student_id" Type="String" />
                 </SelectParameters>

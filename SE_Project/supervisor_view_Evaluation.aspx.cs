@@ -16,7 +16,9 @@ public partial class supervisor_view_Evaluation : System.Web.UI.Page
         if (!IsPostBack)
         {
             // Establish a database connection
-            string connectionString = "Data Source=IK\\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True";
+            dbhandler db = dbhandler.Instance;
+
+            string connectionString = db.connectionstring;
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -154,7 +156,9 @@ public partial class supervisor_view_Evaluation : System.Web.UI.Page
         List<string> panelMemberIds = new List<string>();
 
         int fypId = Convert.ToInt32(Session["fyp_id"]);
-        string connectionString = "Data Source=IK\\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True";
+        dbhandler db = dbhandler.Instance;
+
+        string connectionString = db.connectionstring;
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             string query = @"

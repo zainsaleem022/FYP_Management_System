@@ -50,6 +50,24 @@
                     </button>
                 </asp:HyperLink>
             </li>
+                               <li>
+                <%-- Dummy Hyperlinks --%>
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/committee_makes_new_panel.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>Create Panel</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+                                <li>
+                <%-- Dummy Hyperlinks --%>
+                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/committee_add_assignment.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>Add New Assignment</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
             </ul>
         </div>
         <div class="content">
@@ -69,7 +87,7 @@
                             </tr>
                              <tr>
                                 <th>Name:</th>
-                                <td><asp:TextBox ID="TextBox3" runat="server" TextMode="Password"></asp:TextBox></td>
+                                <td><asp:TextBox ID="TextBox3" runat="server" ></asp:TextBox></td>
                             </tr>
                             <tr>
                             <td><asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Register" /></td>
