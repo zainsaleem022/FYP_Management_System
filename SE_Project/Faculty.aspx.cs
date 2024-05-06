@@ -28,7 +28,7 @@ public partial class Faculty : System.Web.UI.Page
         }
         else
         {
-            Response.Write("<script>alert('Error');</script>");
+            Response.Write("<script>alert('You haven't been assigned the role of Committee');</script>");
         }
     }
 
@@ -49,7 +49,7 @@ public partial class Faculty : System.Web.UI.Page
         }
         else
         {
-            Response.Write("<script>alert('Error');</script>");
+            Response.Write("<script>alert('You have not been assigned the role of Supervisor');</script>");
         }
     }
 
@@ -70,7 +70,7 @@ public partial class Faculty : System.Web.UI.Page
         }
         else
         {
-            Response.Write("<script>alert('Error');</script>");
+            Response.Write("<script>alert('You have not been assigned the role of Panel');</script>");
         }
     }
 }

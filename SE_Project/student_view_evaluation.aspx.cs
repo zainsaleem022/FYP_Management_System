@@ -20,12 +20,12 @@ public partial class student_view_evaluation : System.Web.UI.Page
 
     private void BindGridView()
     {
+        dbhandler dbhandler = dbhandler.Instance;
+        string connectionString = dbhandler.getConnectionString();
         List<EvaluationData> data = new List<EvaluationData>();
         List<EvaluationData> dataWithScores = new List<EvaluationData>();
         string studentId = Session["student_id"].ToString();
-        dbhandler db = dbhandler.Instance;
 
-        string connectionString = db.connectionstring;
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             string query = @"

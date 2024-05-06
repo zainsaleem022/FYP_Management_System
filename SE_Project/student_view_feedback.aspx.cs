@@ -20,8 +20,8 @@ public partial class student_view_feedback : System.Web.UI.Page
     {
         List<EvaluationData> data = new List<EvaluationData>();
         string studentId = Session["student_id"].ToString();
-        dbhandler db = dbhandler.Instance;
-        string connectionString = db.connectionstring;
+        dbhandler dbhandler = dbhandler.Instance;
+        string connectionString = dbhandler.getConnectionString();
 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {

@@ -28,7 +28,7 @@
                 <asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl="~/Register.aspx">
                     <button>
                         <img src="images/home_icon.png" alt="Home" />
-                        <span>Register</span>
+                        <span>Register Faculty</span>
                     </button>
                 </asp:HyperLink>
             </li>

@@ -50,9 +50,8 @@ public partial class supervisor_view_Evaluation : System.Web.UI.Page
         List<evData> data = new List<evData>();
         List<evData> dataWithScores = new List<evData>();
         int selectedFypId = Convert.ToInt32(DropDownList1.SelectedValue);
-        dbhandler db = dbhandler.Instance;
-
-        string connectionString = db.connectionstring;
+        dbhandler dbhandler = dbhandler.Instance;
+        string connectionString = dbhandler.getConnectionString();
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             string query = @"

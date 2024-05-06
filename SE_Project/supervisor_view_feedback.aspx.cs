@@ -15,9 +15,8 @@ public partial class supervisor_view_feedback : System.Web.UI.Page
         if (!IsPostBack)
         {
             // Establish a database connection
-            dbhandler db = dbhandler.Instance;
-
-            string connectionString = db.connectionstring;
+            dbhandler dbhandler = dbhandler.Instance;
+            string connectionString = dbhandler.getConnectionString();
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
