@@ -39,4 +39,14 @@ public partial class _Default : System.Web.UI.Page
             Response.Write("<script>alert('Evaluation Forms Sent.');</script>");
         }
     }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("viewalldetails.aspx");
+    }
+
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("countfyp.aspx");
+    }
 }

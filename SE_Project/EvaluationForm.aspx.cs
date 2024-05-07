@@ -18,7 +18,7 @@ public partial class EvaluationForm : System.Web.UI.Page
 
             dbhandler db = dbhandler.Instance;
 
-            string connectionString = db.connectionstring;
+            string connectionString = db.getConnectionString();
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -65,7 +65,7 @@ public partial class EvaluationForm : System.Web.UI.Page
         // Establish a database connection
         dbhandler db = dbhandler.Instance;
 
-        string connectionString = db.connectionstring;
+        string connectionString = db.getConnectionString();
         using (SqlConnection con = new SqlConnection(connectionString))
         {
             con.Open();

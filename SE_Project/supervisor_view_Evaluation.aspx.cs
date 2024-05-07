@@ -18,7 +18,7 @@ public partial class supervisor_view_Evaluation : System.Web.UI.Page
             // Establish a database connection
             dbhandler db = dbhandler.Instance;
 
-            string connectionString = db.connectionstring;
+            string connectionString = db.getConnectionString();
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -158,7 +158,7 @@ public partial class supervisor_view_Evaluation : System.Web.UI.Page
         int fypId = Convert.ToInt32(Session["fyp_id"]);
         dbhandler db = dbhandler.Instance;
 
-        string connectionString = db.connectionstring;
+        string connectionString = db.getConnectionString();
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             string query = @"
