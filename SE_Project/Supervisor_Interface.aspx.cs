@@ -26,13 +26,15 @@ public partial class Supervisor_Interface : System.Web.UI.Page
         Response.Redirect("supervisor_add_fyp_to_supervision.aspx");
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+
+
+    protected void Button2_Click_Click(object sender, EventArgs e)
     {
-        Response.Redirect("supervisor_view_Evaluation.aspx");
+        Response.Write("<script>alert('Faculty Registration Successfull');</script>");
     }
 
-    protected void Button2_Click(object sender, EventArgs e)
+    protected void Button5_Click_Click(object sender, EventArgs e)
     {
-        Response.Redirect("supervisor_view_feedback.aspx");
+        Response.Write("<script>alert('Faculty Registration Successfull');</script>");
     }
 }

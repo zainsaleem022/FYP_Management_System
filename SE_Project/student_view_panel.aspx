@@ -42,7 +42,7 @@
             </li>
             <li>
                 <%-- Dummy Hyperlinks --%>
-                <asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl="~/RegisterStudent.aspx">
+                <asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl="~/student_view_feedback.aspx">
                     <button>
                         <img src="images/form_icon.png" alt="Attendance" />
                         <span>View Feedback</span>
@@ -62,6 +62,14 @@
                     <button>
                         <img src="images/form_icon.png" alt="Attendance" />
                         <span>Add FYP Details</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+                                <li>
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/student_view_assignments.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>View Assignments</span>
                     </button>
                 </asp:HyperLink>
             </li>

@@ -23,9 +23,9 @@ public class dbhandler
     }
 
     // Private fields
-    private string connectionstring;
+    public string connectionstring;
     public SqlConnection connection;
-
+    public string getConnectionString() { return connectionstring; }
     // Public method to perform login
     public int login(string id, string password, ref string userrole)
     {
@@ -41,8 +41,11 @@ public class dbhandler
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Parameters.AddWithValue("@password", password);
 
-            // Open connection to the database
-            connection.Open();
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
+
+                // Open connection to the database
+                connection.Open();
 
             // Execute the query
             using (SqlDataReader reader = cmd.ExecuteReader())
@@ -358,6 +361,47 @@ public class dbhandler
         }
     }
 
+
+
+    public int GetPanelIdForFaculty(string facultyId)
+    {
+        int panelId = 0;
+
+        using (SqlConnection connection = new SqlConnection(connectionstring))
+        {
+            string query = @"
+                SELECT p.id AS panel_id
+                FROM panel p
+                JOIN faculty f ON p.panel_member_1_id = f.id
+                                OR p.panel_member_2_id = f.id
+                                OR p.panel_member_3_id = f.id
+                                OR p.panel_member_4_id = f.id
+                                OR p.panel_member_5_id = f.id
+                WHERE f.id = @facultyId";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@facultyId", facultyId);
+
+            connection.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                panelId = Convert.ToInt32(reader["panel_id"]);
+            }
+            else
+            {
+                // If no panel ID is found, set panelId to 0
+                panelId = 0;
+            }
+
+            reader.Close();
+        }
+
+        return panelId;
+    }
+
     public DataTable DisplayPanel(int id)
     {
         string query = @"SELECT
@@ -427,10 +471,10 @@ public class dbhandler
         return groupId;
     }
 
-    public int RegisterFaculty(string id, string password, string name, string email)
+    public int RegisterFaculty(string id, string password, string name, string email,int p, int s, int c)
     {
         // Perform the student registration
-        string registerFacultyQuery = "INSERT INTO faculty (id, supervisor,panel,committee,faculty_name, email) VALUES (@id, 0,0,0, @name, @email)";
+        string registerFacultyQuery = "INSERT INTO faculty (id, supervisor,panel,committee,faculty_name, email) VALUES (@id, @p,@s,@c, @name, @email)";
         string registerUserQuery = "INSERT INTO users (id, pwd, user_role) VALUES (@id, @password, 'faculty')";
         connection.Open();
         SqlTransaction transaction = connection.BeginTransaction();
@@ -441,6 +485,9 @@ public class dbhandler
 
 
             // Add parameters for student registration
+            cmdFaculty.Parameters.AddWithValue("@p", p);
+            cmdFaculty.Parameters.AddWithValue("@s", s);
+            cmdFaculty.Parameters.AddWithValue("@c", c);
             cmdFaculty.Parameters.AddWithValue("@id", id);
             cmdFaculty.Parameters.AddWithValue("@name", name);
             cmdFaculty.Parameters.AddWithValue("@email", email);

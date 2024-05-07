@@ -20,10 +20,12 @@ public partial class student_view_evaluation : System.Web.UI.Page
 
     private void BindGridView()
     {
+        dbhandler dbhandler = dbhandler.Instance;
+        string connectionString = dbhandler.getConnectionString();
         List<EvaluationData> data = new List<EvaluationData>();
         List<EvaluationData> dataWithScores = new List<EvaluationData>();
         string studentId = Session["student_id"].ToString();
-        string connectionString = "Data Source=IK\\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True";
+
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             string query = @"
@@ -124,7 +126,9 @@ public partial class student_view_evaluation : System.Web.UI.Page
         List<string> panelMemberIds = new List<string>();
 
         int fypId = Convert.ToInt32(Session["fyp_id"]);
-        string connectionString = "Data Source=IK\\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True";
+        dbhandler db = dbhandler.Instance;
+
+        string connectionString = db.getConnectionString(); 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             string query = @"
