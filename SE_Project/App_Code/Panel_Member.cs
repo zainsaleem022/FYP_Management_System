@@ -48,9 +48,10 @@ public class Panel_Member:Faculty_class
         set { name = value; }
     }
 
-    public DataTable DisplayPanelMembers()
+    public DataTable DisplayPanelMembers(int panels)
     {
+
        dbhandler dbhandler = dbhandler.Instance;
-       return dbhandler.DisplayPanel(panel);
+       return dbhandler.DisplayPanel(panels);
     }
 }

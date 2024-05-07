@@ -361,6 +361,47 @@ public class dbhandler
         }
     }
 
+
+
+    public int GetPanelIdForFaculty(string facultyId)
+    {
+        int panelId = 0;
+
+        using (SqlConnection connection = new SqlConnection(connectionstring))
+        {
+            string query = @"
+                SELECT p.id AS panel_id
+                FROM panel p
+                JOIN faculty f ON p.panel_member_1_id = f.id
+                                OR p.panel_member_2_id = f.id
+                                OR p.panel_member_3_id = f.id
+                                OR p.panel_member_4_id = f.id
+                                OR p.panel_member_5_id = f.id
+                WHERE f.id = @facultyId";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@facultyId", facultyId);
+
+            connection.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                panelId = Convert.ToInt32(reader["panel_id"]);
+            }
+            else
+            {
+                // If no panel ID is found, set panelId to 0
+                panelId = 0;
+            }
+
+            reader.Close();
+        }
+
+        return panelId;
+    }
+
     public DataTable DisplayPanel(int id)
     {
         string query = @"SELECT

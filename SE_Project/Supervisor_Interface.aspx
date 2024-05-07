@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Supervisor_Interface.aspx.cs" Inherits="Supervisor_Interface" %>
+﻿﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Supervisor_Interface.aspx.cs" Inherits="Supervisor_Interface" %>
 
 <!DOCTYPE html>
 
@@ -100,10 +100,3 @@
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
