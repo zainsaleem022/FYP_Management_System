@@ -22,7 +22,7 @@
                     <asp:BoundField DataField="final_grade" HeaderText="final_grade" SortExpression="final_grade" />
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=IK\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True" ProviderName="System.Data.SqlClient" SelectCommand="SELECT * FROM [allfypdetails]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=LAPTOP-RU4CV3CE\SQLEXPRESS;Initial Catalog=fyp1;Integrated Security=True" ProviderName="System.Data.SqlClient" SelectCommand="SELECT * FROM [allfypdetails]"></asp:SqlDataSource>
         </div>
     </form>
 </body>
