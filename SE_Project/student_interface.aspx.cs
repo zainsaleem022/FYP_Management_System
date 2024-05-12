@@ -69,4 +69,55 @@ public partial class student_interface : System.Web.UI.Page
             cancelArgs.Cancel = true;
         }
     }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        dbhandler dbhandler = dbhandler.Instance;
+        if (dbhandler.getStatus() == 0)
+        {
+            Response.Write("<script>alert('Evaluations not yet opened.')</script>");
+        }
+        else {
+            Response.Redirect("student_view_evaluation.aspx");
+        }
+    }
+
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        dbhandler dbhandler = dbhandler.Instance;
+        if (dbhandler.getStatus() == 0)
+        {
+            Response.Write("<script>alert('Evaluations not yet opened.')</script>");
+        }
+        else
+        {
+            Response.Redirect("student_view_feedback.aspx");
+        }
+    }
+
+    protected void Button2_Click1(object sender, EventArgs e)
+    {
+        dbhandler dbhandler = dbhandler.Instance;
+        if (dbhandler.getStatus() == 0)
+        {
+            Response.Write("<script>alert('Evaluations not yet opened.')</script>");
+        }
+        else
+        {
+            Response.Redirect("student_view_evaluation.aspx");
+        }
+    }
+
+    protected void Button3_Click1(object sender, EventArgs e)
+    {
+        dbhandler dbhandler = dbhandler.Instance;
+        if (dbhandler.getStatus() == 0)
+        {
+            Response.Write("<script>alert('Evaluations not yet opened.')</script>");
+        }
+        else
+        {
+            Response.Redirect("student_view_feedback.aspx");
+        }
+    }
 }

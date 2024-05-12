@@ -23,7 +23,7 @@ public class dbhandler
     }
 
     // Private fields
-    public string connectionstring;
+    private string connectionstring;
     public SqlConnection connection;
     public string getConnectionString() { return connectionstring; }
     // Public method to perform login

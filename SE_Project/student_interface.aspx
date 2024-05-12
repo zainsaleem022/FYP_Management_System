@@ -80,6 +80,10 @@
             <form id="form1" runat="server">
                 <div class="section">
                     <h3>Informationn<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="View Supervisor Review" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click1" Text="View Grade" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click1" Text="View Feedback" />
                     </h3>
                     <div class="box">
                         <table>

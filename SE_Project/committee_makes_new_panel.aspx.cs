@@ -14,7 +14,7 @@ public partial class committee_makes_new_panel : System.Web.UI.Page
         if (!IsPostBack)
         {
             dbhandler db = dbhandler.Instance;
-            string connectionString = db.connectionstring;
+            string connectionString = db.getConnectionString();
             string query = "SELECT f.id, f.faculty_name " +
                            "FROM faculty f " +
                            "LEFT JOIN panel p ON f.id = p.panel_member_1_id OR f.id = p.panel_member_2_id OR f.id = p.panel_member_3_id OR f.id = p.panel_member_4_id OR f.id = p.panel_member_5_id " +
@@ -61,7 +61,7 @@ public partial class committee_makes_new_panel : System.Web.UI.Page
 
         int rowCount = 0;
         dbhandler db = dbhandler.Instance;
-        string connectionString1 = db.connectionstring;
+        string connectionString1 = db.getConnectionString();
 
         using (SqlConnection connection = new SqlConnection(connectionString1))
         {
@@ -94,7 +94,7 @@ public partial class committee_makes_new_panel : System.Web.UI.Page
                 {
                     // Insert values into the panel table
                     dbhandler db1 = dbhandler.Instance;
-                    string connectionString = db1.connectionstring;
+                    string connectionString = db1.getConnectionString();
                     string query = "INSERT INTO panel (id,panel_member_1_id, panel_member_2_id, panel_member_3_id, panel_member_4_id, panel_member_5_id) " +
                                    "VALUES (@row,@id1, @id2, @id3, @id4, @id5)";
 

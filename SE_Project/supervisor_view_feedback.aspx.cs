@@ -46,7 +46,7 @@ public partial class supervisor_view_feedback : System.Web.UI.Page
 
         dbhandler db = dbhandler.Instance;
 
-        string connectionString = db.connectionstring;
+        string connectionString = db.getConnectionString();
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             string query = @"
