@@ -64,7 +64,13 @@
                     </button>
                 </asp:HyperLink>
             </li>
-                            <li>
+                <li>
+                <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/supervisor_view_fyp_assignments.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>View Current Assignments</span>
+                    </button>
+                </asp:HyperLink>
             </li>
                             
             </ul>
