@@ -13,7 +13,7 @@
         <header class="header">
             <div class="left-section"></div>
             <div class="center-section">
-                <h2>FYP Committee Profile</h2>
+                <h2>Panel Profile</h2>
             </div>
             <div class="right-section">
                 <a href="Login.aspx" class="back-button">Log Out</a
@@ -40,15 +40,7 @@
                     </button>
                 </asp:HyperLink>
             </li>
-            <li>
-                <%-- Dummy Hyperlinks --%>
-                <asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl="~/">
-                    <button>
-                        <img src="images/form_icon.png" alt="Attendance" />
-                        <span>View Deadlines</span>
-                    </button>
-                </asp:HyperLink>
-            </li>
+
 
 
 

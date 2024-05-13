@@ -19,30 +19,30 @@ public partial class supervisor_view_fyp_assignments : System.Web.UI.Page
 
         // Create the SQL query
         string query = @"
-        SELECT 
-            f.fyp_title AS 'FYP Title',
-            a.title AS 'Assignment Title',
-            a.deadline AS 'Assignment Deadline',
-            STRING_AGG(s.student_name, ', ') AS 'Student Names'
-        FROM 
-            fyp f
-        INNER JOIN 
-            fyp_group fg ON f.id = fg.fyp_id
-        INNER JOIN 
-            Student s ON fg.student_id = s.student_id
-        INNER JOIN 
-            fyp_supervisor fs ON f.id = fs.fyp_id
-        LEFT JOIN 
-            Assignment_Submission sub ON f.id = sub.fyp_group_id
-        LEFT JOIN 
-            Assignment a ON sub.assignment_id = a.id
-        WHERE 
-            fs.supervisor_id = @supervisor_id
-            AND sub.id IS NULL
-        GROUP BY
-            f.fyp_title,
-            a.title,
-            a.deadline";
+                SELECT 
+                    f.fyp_title AS [FYP Title],
+                    a.title AS [Assignment Title],
+                    a.deadline AS [Assignment Deadline],
+                    STRING_AGG(s.student_name, ', ') AS [Student Name]
+                FROM 
+                    fyp f
+                INNER JOIN 
+                    fyp_group fg ON f.id = fg.fyp_id
+                INNER JOIN 
+                    Student s ON fg.student_id = s.student_id
+                INNER JOIN 
+                    fyp_supervisor fs ON f.id = fs.fyp_id
+                LEFT JOIN 
+                    Assignment a ON 1 = 1
+                WHERE 
+                    NOT EXISTS (
+                        SELECT 1 
+                        FROM Assignment_Submission ass 
+                        WHERE ass.assignment_id = a.id AND ass.fyp_group_id = fg.fyp_id
+                    )
+                    AND fs.supervisor_id = @supervisor_id
+                GROUP BY 
+                    f.fyp_title, a.title, a.deadline;";
 
 
         // Get the dbhandler instance

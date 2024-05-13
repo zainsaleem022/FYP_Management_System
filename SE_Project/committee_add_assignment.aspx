@@ -71,6 +71,24 @@
                     </button>
                 </asp:HyperLink>
             </li>
+                                            <li>
+                <%-- Dummy Hyperlinks --%>
+                <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/viewalldetails.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>View FYP Details</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+                            <li>
+                <%-- Dummy Hyperlinks --%>
+                <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/countfyp.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>View Supervisor's FYP</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
             </ul>
             
         </div>

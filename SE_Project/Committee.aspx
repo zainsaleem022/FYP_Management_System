@@ -68,6 +68,24 @@
                     </button>
                 </asp:HyperLink>
             </li>
+                            <li>
+                <%-- Dummy Hyperlinks --%>
+                <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/viewalldetails.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>View FYP Details</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
+                            <li>
+                <%-- Dummy Hyperlinks --%>
+                <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/countfyp.aspx">
+                    <button>
+                        <img src="images/form_icon.png" alt="Attendance" />
+                        <span>View Supervisor's FYP</span>
+                    </button>
+                </asp:HyperLink>
+            </li>
             </ul>
             
         </div>
@@ -75,9 +93,6 @@
             <form id="form2" runat="server">
                 <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Generate Evaluation Forms" />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="View All Fyp Details" />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Supervisor Fyp count" />
                 <div class="section">
                     <h3>Informationn</h3>
                     <div class="box">

@@ -18,7 +18,7 @@ public partial class committee_makes_new_panel : System.Web.UI.Page
             string query = "SELECT f.id, f.faculty_name " +
                            "FROM faculty f " +
                            "LEFT JOIN panel p ON f.id = p.panel_member_1_id OR f.id = p.panel_member_2_id OR f.id = p.panel_member_3_id OR f.id = p.panel_member_4_id OR f.id = p.panel_member_5_id " +
-                           "WHERE p.id IS NULL";
+                           "WHERE p.id IS NULL and f.panel = 1";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

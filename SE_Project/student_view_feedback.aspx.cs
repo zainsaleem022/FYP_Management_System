@@ -18,7 +18,7 @@ public partial class student_view_feedback : System.Web.UI.Page
 
     private void BindGridView()
     {
-        List<EvaluationData> data = new List<EvaluationData>();
+        List<EvaluationData1> data = new List<EvaluationData1>();
         string studentId = Session["student_id"].ToString();
         dbhandler dbhandler = dbhandler.Instance;
         string connectionString = dbhandler.getConnectionString();
@@ -26,7 +26,7 @@ public partial class student_view_feedback : System.Web.UI.Page
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             string query = @"
-                SELECT ef.panel_member_id, ef.comments
+                SELECT ef.comments
                 FROM evaluation_feedback ef
                 LEFT JOIN fyp_group fg ON ef.fyp_id = fg.fyp_id
                 WHERE fg.student_id = @studentId
@@ -39,11 +39,11 @@ public partial class student_view_feedback : System.Web.UI.Page
 
             while (reader.Read())
             {
-                EvaluationData evaluationData = new EvaluationData
+                EvaluationData1 evaluationData = new EvaluationData1
                 {
-                    PanelMemberId = reader.GetString(0),
-                    Comment = reader.IsDBNull(1) ? string.Empty : reader.GetString(1)
+                    Comment = reader.IsDBNull(0) ? string.Empty : reader.GetString(0)
                 };
+
                 data.Add(evaluationData);
             }
         }
@@ -53,8 +53,7 @@ public partial class student_view_feedback : System.Web.UI.Page
     }
 }
 
-public class EvaluationData
+public class EvaluationData1
 {
-    public string PanelMemberId { get; set; }
     public string Comment { get; set; }
 }

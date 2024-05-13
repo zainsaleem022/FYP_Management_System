@@ -42,15 +42,7 @@
                     </button>
                 </asp:HyperLink>
             </li>
-            <li>
-                <%-- Dummy Hyperlinks --%>
-                <asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl="~/">
-                    <button>
-                        <img src="images/form_icon.png" alt="Attendance" />
-                        <span>View Deadlines</span>
-                    </button>
-                </asp:HyperLink>
-            </li>
+
 
 
 
